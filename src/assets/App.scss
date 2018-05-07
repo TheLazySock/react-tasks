@@ -1,15 +1,44 @@
-#app {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: #f2f2f2;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-#create-elem {
+#app > * {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: #f2f2f2;
+    background: #fafafa;
+}
+
+#test-component{ 
+    width: 85%;
+    height: 100%;
+    margin: 25px auto;
+    padding: 0 45px;
+    border: solid 1px #c2c2c2;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px #c2c2c2;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.counter-buttons {
+    margin: auto;
+    button {
+        width: 45px;
+        height: 25px;
+        border: solid 1px #878787;
+        &:first-child {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+        &:nth-child(2) {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+    }
 }

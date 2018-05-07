@@ -8,7 +8,7 @@ import FuncComp from './components/FunctionalComponent'
 const CreateElem = React.createElement(
     "h1",
     {
-        id: 'container', className: "class"
+        id: 'test-component', className: "class", style: {textAlign: 'center'}
     },
     "Hello world with React.createElement() !"
 )
