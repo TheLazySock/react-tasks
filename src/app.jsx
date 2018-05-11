@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/App.scss';
-import ReactComp from './components/Component';
-import PureComp from './components/PureComponent';
-import FuncComp from './components/FunctionalComponent'
+import SearchPage from './containers/SearchPage';
+import MoviePage from './containers/MoviePage';
 
 const CreateElem = React.createElement(
     "h1",
@@ -15,15 +14,19 @@ const CreateElem = React.createElement(
 
 class App extends React.Component {
     render() {
+        // return (
+        //     <React.Fragment>
+        //         <ReactComp />
+        //         <PureComp time={new Date()}/>
+        //         <FuncComp componentName="functional"/>
+        //     </React.Fragment>
+        // );
         return (
             <React.Fragment>
-                <ReactComp />
-                <PureComp time={new Date()}/>
-                <FuncComp componentName="functional"/>
+                <SearchPage/>
             </React.Fragment>
-        );
+        )
     }
 }
 
-ReactDOM.render(CreateElem, document.getElementById('create-elem'));
 ReactDOM.render(<App />, document.getElementById('app'));
