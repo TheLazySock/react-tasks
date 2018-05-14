@@ -1,9 +1,21 @@
 import React from 'react';
 
-const MovieGrid = () => {
+import MovieCard from './MovieCard';
+
+const MovieGrid = (props) => {
+    // const { movies } = props.movies || [];
+    
+
     return (
-        <div>This is MovieGrid component</div>
-    )
+        // <div>
+        //     {
+        //         movies.length !== 0
+        //         ? movies.map(movie => <MovieCard key={movie.id} {...movie}/>) 
+        //         : <label>No films found</label>
+        //     }
+        // </div>
+        <div>movie grid</div>
+    );
 }
 
 export default MovieGrid;
