@@ -1,16 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+
 import './assets/App.scss';
 import SearchPage from './containers/SearchPage';
 import MoviePage from './containers/MoviePage';
 
-const CreateElem = React.createElement(
-    "h1",
-    {
-        id: 'test-component', className: "class", style: {textAlign: 'center'}
-    },
-    "Hello world with React.createElement() !"
-)
+import store from './redux/store';
 
 class App extends React.Component {
     render() {
@@ -29,4 +26,9 @@ class App extends React.Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('app')
+);

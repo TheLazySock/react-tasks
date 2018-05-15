@@ -1,12 +1,12 @@
 import React from 'react';
 
-import BackdropContainer from '../components/BackdropContainer.jsx'
+import BackdropContainer from '../components/BackdropContainer';
 
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: this.props.searchText || ''
+            text: this.props.search || ''
         };
     }
 
@@ -20,6 +20,7 @@ class SearchBox extends React.Component {
         const { text } = this.state;
 
         this.props.onSearch(text);
+        console.log(text);
     };
 
     render() {
