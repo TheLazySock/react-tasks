@@ -142,14 +142,18 @@ $red: #c43a58;
     min-height: 480px;
     height: 100%;
     width: 300px;
+    text-decoration: none;
+    cursor: default;
     .movie-card-poster {
         // height: 450px;
         width: 100%;
+        cursor: pointer;
     }
     & > div {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        color: #000000;
     }
     .movie-card-date {
         padding: 1px 3px;

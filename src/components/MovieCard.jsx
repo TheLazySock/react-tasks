@@ -6,14 +6,14 @@ const MovieCard = (props) => {
     const genresString = props.genres.join(' & ');
 
     return (
-        <div className="movie-card">
+        <a className="movie-card" href='#'>
             <img className="movie-card-poster" src={props.poster_path} alt="There must be poster"/>
             <div>
                 <label className="movie-card-title">{props.title}</label>
                 <label className="movie-card-date">{releaseDateYear}</label>
             </div>
             <label className="movie-card-genres">{genresString}</label>
-        </div>
+        </a>
     )
 }
 
