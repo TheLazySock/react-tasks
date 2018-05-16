@@ -5,22 +5,30 @@ $red: #c43a58;
     padding: 0;
 }
 
-#app > * {
+#app {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: #fafafa;
+    & > *:first-child {
+        min-height: 100vh;
+        height: 100%;
+        flex-grow: 1;
+    }
 }
 
-#test-component{ 
-    width: 85%;
-    height: 100%;
-    margin: 25px auto;
-    padding: 0 45px;
-    border: solid 1px #c2c2c2;
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px #c2c2c2;
+.footer {
+    width: 100%;
+    height: 35px;
+    line-height: 30px;
+    display: block;
+    background-color: #211f1f;
+    color: $red;
+    position: relative;
+    flex-grow: 0;
+    & > label {        
+        vertical-align: middle;
+        margin-left: 15px;
+    }
 }
 
 .container {
@@ -96,5 +104,65 @@ $red: #c43a58;
         border-radius: 3px;
         min-width: 140px;
         padding: 0 10px;
+    }
+}
+
+.movie-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.movie-grid-container {
+    display: block;
+}
+
+.sort-by-lane {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e4e4e4b4;
+    width: 100%;
+    min-height: 35px;
+    margin-bottom: 45px;
+    & > label {
+        margin-left: 8%;
+    }
+    & > div {
+        margin-right: 8%;
+    }
+}
+
+.movie-card {
+    margin: 25px 40px;
+    min-height: 480px;
+    height: 100%;
+    width: 300px;
+    .movie-card-poster {
+        // height: 450px;
+        width: 100%;
+    }
+    & > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .movie-card-date {
+        padding: 1px 3px;
+        border: solid 1px #aeaeae;
+        border-radius: 5px;
+        width: 32px;
+        height: 21px;
+    }
+    .movie-card-title {
+        font-size: 18px;
+    }
+    .movie-card-genres {
+        font-size: 12px;
+        color: #7c7c7c;
     }
 }

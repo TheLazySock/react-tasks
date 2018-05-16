@@ -46,7 +46,7 @@ class SearchPage extends React.Component {
     searchMovies(query) {
         const params = {
             search: query,
-            limit: 4
+            limit: 6
         };
     
         let url = new URL(`http://react-cdp-api.herokuapp.com/movies`);

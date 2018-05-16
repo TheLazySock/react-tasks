@@ -6,21 +6,16 @@ import { createStore } from 'redux'
 import './assets/App.scss';
 import SearchPage from './containers/SearchPage';
 import MoviePage from './containers/MoviePage';
+import Footer from './components/Footer';
 
 import store from './redux/store';
 
 class App extends React.Component {
     render() {
-        // return (
-        //     <React.Fragment>
-        //         <ReactComp />
-        //         <PureComp time={new Date()}/>
-        //         <FuncComp componentName="functional"/>
-        //     </React.Fragment>
-        // );
         return (
             <React.Fragment>
-                <SearchPage/>
+                <SearchPage />
+                <Footer />
             </React.Fragment>
         )
     }

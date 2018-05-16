@@ -4,7 +4,7 @@ const style = {
     container: {
         width: "100%",
         backgroundColor: "#211f1f",
-        padding: "10px 0 25px"
+        padding: "10px 0 25px",
     },
     content: {
         width: "80%",
