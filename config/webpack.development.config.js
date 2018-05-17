@@ -5,6 +5,8 @@ module.exports = merge(require('./webpack.base.config'), {
     devtool: 'source-map',
 
     devServer: {
-        contentBase: '../dist'
+        contentBase: '../dist',
+        historyApiFallback: true,
+        publicPath: '/',
     },
 });
