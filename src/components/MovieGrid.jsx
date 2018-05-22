@@ -17,8 +17,8 @@ const MovieGrid = (props) => {
                         <label>{movies.length} movies found</label>
                         <div>
                             Sort by
-                            <button>release date</button>
-                            <button>rating</button>
+                            <span className="sort-option">release date </span>
+                            <span className="sort-option">rating</span>
                         </div>
                     </React.Fragment>
                     : null

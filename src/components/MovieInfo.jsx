@@ -18,8 +18,6 @@ const MovieInfo = (props) => {
                 <div className="movie-numbers">{movie.runtime} min</div>
                 <div className="scrollable">
                     <div className="movie-description">{movie.overview}</div>
-                    {/* <div className="movie-role">Director: {props.director}</div> */}
-                    {/* <div className="movie-role">Cast List: {castList}</div> */}
                 </div>
             </div>
         </div>

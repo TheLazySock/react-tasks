@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import MovieInfo from '../components/MovieInfo';
-import SimilarGenreContainer from './SimilarGenreContainer';
+import MovieGrid from '../components/MovieGrid';
 import BackdropContainer from '../components/BackdropContainer';
 
 import { searchMovies } from '../redux/actions';
@@ -30,15 +30,23 @@ class MoviePage extends React.Component {
                 "runtime": 95
             }
         }
+
+        this.fetchMovie();
+    }
+
+    fetchMovie() {
+        return fetch(`http://react-cdp-api.herokuapp.com/movies/223`)
+            .then(res => res.json())
+            .then(data => this.setState({movie: data}));
     }
 
     render() {
         return (
             <div>
-                <BackdropContainer>
+                <BackdropContainer searchLink={true}>
                     <MovieInfo movie={this.state.movie} />
                 </BackdropContainer>
-                <SimilarGenreContainer />
+                <MovieGrid movies={[]}/>
             </div>
         );
     }

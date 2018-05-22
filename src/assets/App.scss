@@ -1,4 +1,4 @@
-$red: #c43a58;
+$red: #da395c;
 
 * {
     margin: 0;
@@ -56,7 +56,9 @@ $red: #c43a58;
 #search-box {
     display: flex;
     flex-direction: column;
-    margin-top: 65px;
+    margin: auto;
+    margin-top: 45px;
+    width: 80%;
     & > h6 {
         font-size: 20px;
         color: #ffffff;
@@ -135,6 +137,16 @@ $red: #c43a58;
     & > div {
         margin-right: 8%;
     }
+    .sort-option {
+        margin: 0 10px;
+        cursor: pointer;
+        &:nth-child(1) {
+            margin-left: 30px;
+        }
+        &.active {
+            color: $red;
+        }
+    }
 }
 
 .movie-card {
@@ -171,10 +183,31 @@ $red: #c43a58;
     }
 }
 
+.backdrop-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: auto;
+    .site-name {
+        color: $red;
+        font-size: 20px;
+    }
+    .search-link {
+        color: $red;
+        background-color: #fefefe;
+        padding: 5px 15px;
+        font-size: 11px;
+        cursor: pointer;
+    }
+}
+
 .movie {
     display: flex;
     flex-direction: row;
     color: #fefefe;
+    margin: auto;
+    max-width: 80%;
     .movie-image {
         width: 220px;
         height: 330px;
@@ -212,6 +245,7 @@ $red: #c43a58;
         }
         .movie-description {
             margin: 10px 0;
+            // max-width: 70%;
         }
         .movie-role {
             font-size: 11px;
