@@ -18,10 +18,9 @@ render(
         <Router>
             <App>
                 <Switch>
-                    {/* <Redirect from="/" to="search"/> */}
-                    <Route path="/" component={SearchPage} />
-                    <Route path="search/:searchQuery" component={SearchPage} />
-                    <Route path="movie/:id" component={MoviePage} />
+                    <Route exact path="/" component={SearchPage} />
+                    <Route path="/search" component={SearchPage} />
+                    <Route path="/movie/:id" component={MoviePage} />
                     {/* <Route path="*" component={SearchPage} /> */}
                 </Switch>
             </App>

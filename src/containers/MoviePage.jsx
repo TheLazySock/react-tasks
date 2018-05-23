@@ -35,7 +35,7 @@ class MoviePage extends React.Component {
     }
 
     fetchMovie() {
-        return fetch(`http://react-cdp-api.herokuapp.com/movies/223`)
+        return fetch(`http://react-cdp-api.herokuapp.com/movies/${this.props.match.params.id}`)
             .then(res => res.json())
             .then(data => this.setState({movie: data}));
     }

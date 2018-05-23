@@ -27,7 +27,7 @@ class SearchPage extends React.Component {
         }
 
         //ТОЖЕ ДЛЯ ТЕСТА
-        this.searchMovies('');
+        // this.searchMovies('');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,26 +38,31 @@ class SearchPage extends React.Component {
 
     handleSearch(search) {
         const { location } = this.props;
-
+        console.log(location);
         // searchMovies(search);
     }
 
     //ФУНКЦИЯ ДЛЯ ТЕСТА, НЕ БОЛЕЕ. ТАКАЯ ЖЕ ЕСТЬ В ЭКШНАХ.
-    searchMovies(query) {
-        const params = {
-            search: query,
-            limit: 6
-        };
+    // searchMovies(query) {
+    //     query = new URLSearchParams(this.props.location.search);
+    //     console.log(query);
+
+    //     const params = {
+    //         search: query.get('search'),
+    //         searchBy: query.get('searchBy') ? query.get('searchBy') : 'title'
+    //     }
     
-        let url = new URL(`http://react-cdp-api.herokuapp.com/movies`);
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+    //     let url = new URL(`http://react-cdp-api.herokuapp.com/movies`);
+    //     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     
-        return fetch(url)
-            .then(res => res.json())
-            .then(data => this.setState({movies: data.data}));
-    }
+    //     return fetch(url)
+    //         .then(res => res.json())
+    //         .then(data => this.setState({movies: data.data}));
+    // }
 
     render() {
+        console.log('props: ');
+        console.log(this.props);
         return (
             <div>
                 <BackdropContainer>
@@ -70,11 +75,11 @@ class SearchPage extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+    const query = new URLSearchParams(ownProps.location.search);
     return {
         movies: state.movies.items,
         loading: state.movies.isFetching,
-        // search: ''
-        // search: ownProps.location.query.search
+        search: query.get('search')
     };
 }
 

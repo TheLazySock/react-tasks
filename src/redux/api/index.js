@@ -2,7 +2,6 @@ const API_PREFIX = 'http://react-cdp-api.herokuapp.com';
 
 export function searchMovies(query) {
     const params = {
-        // query
         search: query
     };
 
@@ -11,7 +10,7 @@ export function searchMovies(query) {
 
     return fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data));
+        // .then(data => console.log(data));
 }
 
 export function fetchMovies() {
@@ -20,13 +19,13 @@ export function fetchMovies() {
         .then(data => console.log(data));
 }
 
-export function fetchMovie(id) {
-    return fetch(`${API_PREFIX}/movies/${id}`, { params })
-        // .then(data => camelcaseKeys(data, { deep: true }));
-}
+// export function fetchMovie(id) {
+//     return fetch(`${API_PREFIX}/movies/${id}`, { params })
+//         // .then(data => camelcaseKeys(data, { deep: true }));
+// }
 
 export default {
     searchMovies,
     fetchMovies,
-    fetchMovie
+    // fetchMovie
 };
