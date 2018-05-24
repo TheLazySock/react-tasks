@@ -20,6 +20,7 @@ class SearchBox extends React.Component {
         const { text } = this.state;
 
         this.props.onSearch(text);
+        console.log(this.props);
         console.log(text);
     };
 

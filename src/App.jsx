@@ -8,7 +8,7 @@ class App extends React.Component {
             <div>
 
                 {this.props.children}
-                {/* <Route path="/search" component={SearchPage} /> */}
+            
                 <Footer />
             </div>
         )

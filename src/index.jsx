@@ -15,10 +15,11 @@ import store from './redux/store';
 
 render(
     <Provider store={store}>
-        <Router>
+        <Router history={browserHistory}>
             <App>
                 <Switch>
-                    <Route exact path="/" component={SearchPage} />
+                    <Redirect exact from="/" to="/search" />
+                    {/* <Route path="/" component={SearchPage} /> */}
                     <Route path="/search" component={SearchPage} />
                     <Route path="/movie/:id" component={MoviePage} />
                     {/* <Route path="*" component={SearchPage} /> */}

@@ -5,7 +5,7 @@ const MovieInfo = (props) => {
     const movie = props.movie;
     const releaseDateYear = new Date(movie.release_date).getFullYear();
 
-    const genresString = movie.genres.join(' & ');
+    const genresString = movie.genres ? movie.genres.join(' & ') : '';
 
     return (
         <div className="movie">

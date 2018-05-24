@@ -4,29 +4,29 @@ export const FETCH_MOVIES_REQUEST = 'FETCH_MOVIES_REQUEST';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 export const FETCH_MOVIES_FAILURE = 'FETCH_MOVIES_FAILURE';
 
-// export const FETCH_MOVIE_REQUEST = 'FETCH_MOVIE_REQUEST';
-// export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
-// export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
+export const FETCH_MOVIE_REQUEST = 'FETCH_MOVIE_REQUEST';
+export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
+export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
 
 export const fetchMoviesRequest = query => ({
     type: FETCH_MOVIES_REQUEST,
     query
 });
 
-export const fetchMoviesSuccess = ({ data }) => ({
+export const fetchMoviesSuccess = ( data ) => ({
     ...data,
     type: FETCH_MOVIES_SUCCESS
 });
 
-// export const fetchMovieRequest = id => ({
-//     type: FETCH_MOVIE_REQUEST,
-//     id
-// });
+export const fetchMovieRequest = id => ({
+    type: FETCH_MOVIE_REQUEST,
+    id
+});
 
-// export const fetchMovieSuccess = ({ data }) => ({
-//     movie: data,
-//     type: FETCH_MOVIE_SUCCESS
-// });
+export const fetchMovieSuccess = ( data ) => ({
+    movie: data,
+    type: FETCH_MOVIE_SUCCESS
+});
 
 export const searchMovies = query => dispatch => {
     dispatch(fetchMoviesRequest(query));
@@ -35,9 +35,9 @@ export const searchMovies = query => dispatch => {
         .then(data => dispatch(fetchMoviesSuccess(data)));
 }
 
-// export const fetchMovie = id => dispatch => {
-//     dispatch(fetchMovieRequest(id));
+export const fetchMovie = id => dispatch => {
+    dispatch(fetchMovieRequest(id));
 
-//     return api.fetchMovie(id)
-//         .then(data => dispatch(fetchMovieSuccess(data)));
-// }
+    return api.fetchMovie(id)
+        .then(data => dispatch(fetchMovieSuccess(data)));
+}
