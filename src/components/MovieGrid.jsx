@@ -1,38 +1,49 @@
 import React from 'react';
 
 import MovieCard from './MovieCard';
+import MovieGridSummary from './MovieGridSummary';
 
-const MovieGrid = (props) => {
-    const { movies } = props || [];
+class MovieGrid extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sortOption: 'release_date'
+        };
+    }
 
-    console.log(movies);
-    
-    return (
-        <div className="movie-grid-container">
-            <div className="sort-by-lane">
-                {
-                    movies.length !== 0
-                    ? 
-                    <React.Fragment>
-                        <label>{movies.length} movies found</label>
-                        <div>
-                            Sort by
-                            <span className="sort-option">release date </span>
-                            <span className="sort-option">rating</span>
-                        </div>
-                    </React.Fragment>
-                    : null
-                }
+    handleSort(sortOption) {
+        this.setState({
+            sortOption: sortOption
+        })
+
+        this.sortFilmsBy(sortOption);
+    }
+
+    sortFilmsBy(sortOption) {
+        const { movies } = this.props;
+        console.log(sortOption);
+        if (!sortOption)
+            return movies
+        if (sortOption === 'release_date')
+            return movies.sort((m1, m2) => new Date(m2.release_date).getFullYear() - new Date(m1.release_date).getFullYear())
+        if (sortOption === 'vote_average')
+            return movies.sort((m1, m2) => m2.vote_average - m1.vote_average)
+    }
+
+    render() {
+        return (
+            <div className="movie-grid-container">
+                <MovieGridSummary movieCount={this.props.movies.length} sortOption={this.state.sortOption} onSort={this.handleSort.bind(this)}/>
+                <div className="movie-grid">
+                    {
+                        this.props.movies.length !== 0
+                        ?  this.props.movies.map(movie => <MovieCard key={movie.id} {...movie}/>) 
+                        : <label>No films found</label>
+                    }
+                </div>
             </div>
-            <div className="movie-grid">
-                {
-                    movies.length !== 0
-                    ?  movies.map(movie => <MovieCard key={movie.id} {...movie}/>) 
-                    : <label>No films found</label>
-                }
-            </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default MovieGrid;

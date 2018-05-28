@@ -14,7 +14,6 @@ export function searchMovies(query, searchBy) {
 }
 
 export function fetchMovie(id) {
-    console.log(id);
     return fetch(`${API_PREFIX}/movies/${id}`)
         .then(res => res.json())
 }

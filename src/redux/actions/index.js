@@ -50,6 +50,5 @@ export const fetchMovie = id => dispatch => {
 }
 
 export const setSearchBy = searchType => dispatch => {
-    console.log('search by setted');
     return dispatch(setSearchType(searchType));
 }

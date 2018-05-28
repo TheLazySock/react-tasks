@@ -21,10 +21,6 @@ class SearchPage extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if ((nextProps.search !== this.props.search) || (nextProps.searchBy !== this.props.searchBy)) {
-            console.log('nextProps.searchBy')
-            console.log(nextProps.searchBy)
-            console.log('this.props.searchBy')
-            console.log(this.props.searchBy)
             this.props.searchMovies(nextProps.search, nextProps.searchBy);
         }
     }
@@ -36,21 +32,9 @@ class SearchPage extends React.Component {
             pathname: location.pathname,
             search: `search=${search}`
         });
-
-        // console.log('this.props.searchBy');
-        // console.log(this.props.searchBy);
-        // console.log('searchBy');
-        // console.log(searchBy);
-        // this.props.searchBy = searchBy;
-        // console.log('this.props.searchBy');
-        // console.log(this.props.searchBy);
-        // console.log('searchBy');
-        // console.log(searchBy);
     }
 
     handleSearchType(searchBy) {
-        console.log('handlesearchtype');
-        console.log(searchBy);
         this.props.setSearchBy(searchBy);
     }
 
