@@ -6,7 +6,8 @@ class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: this.props.search || ''
+            text: this.props.search || '',
+            searchBy: this.props.searchBy
         };
     }
 
@@ -20,9 +21,19 @@ class SearchBox extends React.Component {
         const { text } = this.state;
 
         this.props.onSearch(text);
-        console.log(this.props);
-        console.log(text);
     };
+
+    handleSearchTypeChanged(e) {
+        this.setState({
+            searchBy: e.target.value
+        })
+
+        this.handleSearchType(e.target.value);
+    }
+
+    handleSearchType(searchBy) {
+        this.props.onSearchType(searchBy);
+    }
 
     render() {
         const { text } = this.state;
@@ -34,10 +45,10 @@ class SearchBox extends React.Component {
                 <div className="search-box-elements">
                     <div className="search-by-box">
                         <label>SEARCH BY</label>
-                        <button>TITLE</button>
-                        <button>GENRE</button>
+                        <button onClick={this.handleSearchTypeChanged.bind(this)} value="title" className={this.state.searchBy === "title" ? 'active' : null}>TITLE</button>
+                        <button onClick={this.handleSearchTypeChanged.bind(this)} value="genres" className={this.state.searchBy === "genres" ? 'active' : null}>GENRE</button>
                     </div>
-                    <button className="search-button" onClick={this.handleSearch.bind(this)}>SEARCH</button>
+                    <button className="search-button" onClick={this.handleSearch.bind(this)} disabled={!text}>SEARCH</button>
                 </div>
             </div>
         )

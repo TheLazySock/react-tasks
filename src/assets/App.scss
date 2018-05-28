@@ -93,9 +93,9 @@ $red: #da395c;
             min-width: 45px;
             margin: 0 4px;
             padding: 3px 10px;
-            .active {
-                background-color: $red;
-            }
+        }
+        .active {
+            background-color: $red;
         }
     }
     .search-button {
@@ -120,6 +120,7 @@ $red: #da395c;
 
 .movie-grid-container {
     display: block;
+    min-height: 85vh;
 }
 
 .sort-by-lane {

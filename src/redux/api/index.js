@@ -1,15 +1,9 @@
 const API_PREFIX = 'http://react-cdp-api.herokuapp.com';
 
-export function searchMovies(query) {
-    // query = new URLSearchParams(query);
-    // console.log('query');
-    // console.log(query);
-
+export function searchMovies(query, searchBy) {
     const params = {
-        // search: query.get('search') ? query.get('search') : query,
-        // searchBy: query.get('searchBy') ? query.get('searchBy') : 'title'
         search: query,
-        searchBy: 'title'
+        searchBy: searchBy ? searchBy : 'title'
     }
 
     let url = new URL(`${API_PREFIX}/movies`);

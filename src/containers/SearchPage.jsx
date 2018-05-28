@@ -7,7 +7,7 @@ import SearchBox from '../components/SearchBox';
 import MovieGrid from '../components/MovieGrid';
 import BackdropContainer from '../components/BackdropContainer';
 
-import { searchMovies } from '../redux/actions';
+import { searchMovies, setSearchBy } from '../redux/actions';
 
 
 class SearchPage extends React.Component {
@@ -20,8 +20,12 @@ class SearchPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.search !== this.props.search) {
-            this.props.searchMovies(nextProps.search);
+        if ((nextProps.search !== this.props.search) || (nextProps.searchBy !== this.props.searchBy)) {
+            console.log('nextProps.searchBy')
+            console.log(nextProps.searchBy)
+            console.log('this.props.searchBy')
+            console.log(this.props.searchBy)
+            this.props.searchMovies(nextProps.search, nextProps.searchBy);
         }
     }
 
@@ -32,13 +36,29 @@ class SearchPage extends React.Component {
             pathname: location.pathname,
             search: `search=${search}`
         });
+
+        // console.log('this.props.searchBy');
+        // console.log(this.props.searchBy);
+        // console.log('searchBy');
+        // console.log(searchBy);
+        // this.props.searchBy = searchBy;
+        // console.log('this.props.searchBy');
+        // console.log(this.props.searchBy);
+        // console.log('searchBy');
+        // console.log(searchBy);
+    }
+
+    handleSearchType(searchBy) {
+        console.log('handlesearchtype');
+        console.log(searchBy);
+        this.props.setSearchBy(searchBy);
     }
 
     render() {
         return (
             <div>
                 <BackdropContainer>
-                    <SearchBox onSearch={this.handleSearch.bind(this)} search={this.props.search}/>
+                    <SearchBox onSearch={this.handleSearch.bind(this)} onSearchType={this.handleSearchType.bind(this)} search={this.props.search} searchBy={this.props.searchBy}/>
                 </BackdropContainer>
                 <MovieGrid movies={this.props.movies}/>
             </div>
@@ -52,8 +72,9 @@ function mapStateToProps(state, ownProps) {
     return {
         movies: state.movies.items,
         loading: state.movies.isFetching,
+        searchBy: state.searchType.searchBy,
         search: query.get('search')
     };
 }
 
-export default connect(mapStateToProps, {searchMovies})(SearchPage);
+export default connect(mapStateToProps, {searchMovies, setSearchBy})(SearchPage);
