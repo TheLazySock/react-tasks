@@ -7,30 +7,36 @@ import MovieGridSummary from './MovieGridSummary';
 import { setSortBy } from '../redux/actions';
 
 class MovieGrid extends React.Component {
-    constructor(props) {
-        super(props);
+    componentDidMount() {
+        this.handleSort(this.props.sortBy);
     }
 
-    componentDidMount() {
-        this.handleSort(this.props.sortBy)
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps)
+            this.handleSort(this.props.sortBy);
     }
 
     handleSort(sortOption) {
-        this.props.setSortBy(sortOption)
+        this.props.setSortBy(sortOption);
 
-        this.sortFilmsBy(sortOption);
+        this.sortMoviesBy(sortOption);
     }
 
-    sortFilmsBy(sortOption) {
+    sortMoviesBy(sortOption) {
+        console.log('executed');
+        console.log(this.props);
         const { movies } = this.props;
-        console.log(sortOption);
+        // console.log(sortOption);
         if (!sortOption)
             return movies
-        if (sortOption === 'release_date')
-            // return movies.sort((m1, m2) => new Date(m2.release_date).getFullYear() - new Date(m1.release_date).getFullYear())
-            return movies.sort((m1, m2) => new Date(m2.release_date) - new Date(m1.release_date))
-        if (sortOption === 'vote_average')
-            return movies.sort((m1, m2) => m2.vote_average - m1.vote_average)
+        if (sortOption === 'release_date') {         
+            movies.sort((m1, m2) => new Date(m2.release_date) - new Date(m1.release_date))
+            this.forceUpdate();
+        }
+        if (sortOption === 'vote_average') {
+            movies.sort((m1, m2) => m2.vote_average - m1.vote_average)
+            this.forceUpdate();
+        }
     }
 
     render() {
