@@ -9,6 +9,7 @@ export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
 export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
 
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
+export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 
 export const fetchMoviesRequest = query => ({
     type: FETCH_MOVIES_REQUEST,
@@ -35,6 +36,11 @@ export const setSearchType = searchType => ({
     searchType: searchType
 });
 
+export const setSortType = sortType => ({
+    type: SET_SORT_TYPE,
+    sortType: sortType
+});
+
 export const searchMovies = (query, searchBy) => dispatch => {
     dispatch(fetchMoviesRequest(query));
 
@@ -51,4 +57,8 @@ export const fetchMovie = id => dispatch => {
 
 export const setSearchBy = searchType => dispatch => {
     return dispatch(setSearchType(searchType));
+}
+
+export const setSortBy = sortType => dispatch => {
+    return dispatch(setSortType(sortType));
 }

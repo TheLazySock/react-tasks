@@ -15,7 +15,7 @@ class SearchPage extends React.Component {
         const { search, searchMovies } = this.props;
 
         if (search) {
-            searchMovies(search);
+            searchMovies(search, this.props.searchBy);
         }
     }
 

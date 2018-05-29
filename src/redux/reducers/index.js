@@ -5,7 +5,8 @@ import {
     FETCH_MOVIES_SUCCESS,
     FETCH_MOVIE_REQUEST,
     FETCH_MOVIE_SUCCESS,
-    SET_SEARCH_TYPE
+    SET_SEARCH_TYPE,
+    SET_SORT_TYPE
 } from '../actions';
 
 const movies = (state = { isFetching: false, items: [] }, action) => {
@@ -56,10 +57,23 @@ const searchType = (state = { searchBy: 'title'}, action) => {
     }
 }
 
+const sortType = (state = { sortBy: 'release_date'}, action) => {
+    switch(action.type) {
+        case SET_SORT_TYPE: 
+            return {
+                ...state,
+                sortBy: action.sortType
+            }
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     movies,
     movie,
-    searchType
+    searchType,
+    sortType
 })
 
 export default rootReducer;
