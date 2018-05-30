@@ -10,20 +10,24 @@ import './assets/App.scss';
 import App from './App';
 import SearchPage from './containers/SearchPage';
 import MoviePage from './containers/MoviePage';
+import NotFoundPage from './containers/NotFoundPage';
+import ErrorBoundary from './containers/ErrorBoundary';
 
 import store from './redux/store';
 
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <App>
-                <Switch>
-                    <Redirect exact from="/" to="/search" />
-                    <Route path="/search" component={SearchPage} />
-                    <Route path="/movie/:id" component={MoviePage} />
-                    {/* <Route path="*" component={SearchPage} /> */}
-                </Switch>
-            </App>
+            <ErrorBoundary>
+                <App>
+                    <Switch>
+                        <Redirect exact from="/" to="/search" />
+                        <Route path="/search" component={SearchPage} />
+                        <Route path="/movie/:id" component={MoviePage} />
+                        <Route path="*" component={NotFoundPage} />
+                    </Switch>
+                </App>
+            </ErrorBoundary>
         </Router>
     </Provider>,
     document.getElementById('app')

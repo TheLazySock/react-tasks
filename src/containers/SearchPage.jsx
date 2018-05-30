@@ -16,6 +16,10 @@ class SearchPage extends React.Component {
 
         if (search) {
             searchMovies(search, this.props.searchBy);
+            this.props.history.push({
+                pathname: location.pathname,
+                search: `search=${search}`
+            });
         }
     }
 
@@ -59,7 +63,7 @@ function mapStateToProps(state, ownProps) {
         movies: state.movies.items,
         loading: state.movies.isFetching,
         searchBy: state.searchType.searchBy,
-        search: query.get('search')
+        search: query.get('search') || state.searchQuery.searchQuery
     };
 }
 
