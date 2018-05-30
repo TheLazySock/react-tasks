@@ -107,6 +107,9 @@ $red: #da395c;
         border-radius: 3px;
         min-width: 140px;
         padding: 0 10px;
+        &.disabled {
+            background-color: #878787;
+        }
     }
 }
 
@@ -133,6 +136,9 @@ $red: #da395c;
     width: 100%;
     min-height: 35px;
     margin-bottom: 45px;
+    .search-query {
+        color: $red;
+    }
     & > label {
         margin-left: 8%;
     }

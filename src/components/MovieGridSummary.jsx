@@ -6,7 +6,6 @@ class MovieGridSummary extends React.PureComponent {
     }
     
     changeSortOption(e) {
-        // console.log(e.target.value);
         this.props.onSort(e.target.value);
     }
     

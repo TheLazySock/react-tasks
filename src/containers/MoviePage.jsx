@@ -12,7 +12,12 @@ class MoviePage extends React.Component {
         const { movieId } = this.props;
 
         this.props.fetchMovie(movieId);
-        console.log(this.props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if ((nextProps.movieId !== this.props.movieId)) {
+            this.props.fetchMovie(nextProps.movieId);
+        }
     }
 
     render() {
@@ -21,19 +26,16 @@ class MoviePage extends React.Component {
                 <BackdropContainer searchLink={true}>
                     <MovieInfo movie={this.props.movie} />
                 </BackdropContainer>
-                <MovieGrid movies={[]}/>
+                <MovieGrid movies={this.props.movies} path={this.props.match.path} />
             </div>
         );
     }
 }
 
 function mapStateToProps(state, ownProps) {
-    console.log(state.movie);
-
-    console.log(ownProps);
-
     return {
         movie: state.movie.info,
+        movies: state.movies.items,
         loading: state.movie.isFetching,
         movieId: ownProps.match.params.id
     };

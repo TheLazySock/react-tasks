@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MovieInfo = (props) => {
-    console.log(props);
     const movie = props.movie;
     const releaseDateYear = new Date(movie.release_date).getFullYear();
 

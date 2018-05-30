@@ -9,6 +9,7 @@ export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
 export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
 
 export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
+export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 
 export const fetchMoviesRequest = query => ({
@@ -30,6 +31,8 @@ export const fetchMovieSuccess = ( data ) => ({
     movie: data,
     type: FETCH_MOVIE_SUCCESS
 });
+
+
 
 export const setSearchType = searchType => ({
     type: SET_SEARCH_TYPE,
@@ -53,6 +56,14 @@ export const fetchMovie = id => dispatch => {
 
     return api.fetchMovie(id)
         .then(data => dispatch(fetchMovieSuccess(data)));
+}
+
+export const setSearchQuery = searchQuery => dispatch => {
+    
+    return dispatch({
+        type: SET_SEARCH_QUERY,
+        searchQuery: searchQuery
+    });
 }
 
 export const setSearchBy = searchType => dispatch => {

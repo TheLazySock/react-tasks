@@ -7,7 +7,7 @@ import SearchBox from '../components/SearchBox';
 import MovieGrid from '../components/MovieGrid';
 import BackdropContainer from '../components/BackdropContainer';
 
-import { searchMovies, setSearchBy } from '../redux/actions';
+import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
 
 
 class SearchPage extends React.Component {
@@ -32,6 +32,8 @@ class SearchPage extends React.Component {
             pathname: location.pathname,
             search: `search=${search}`
         });
+
+        this.props.setSearchQuery(search);
     }
 
     handleSearchType(searchBy) {
@@ -61,4 +63,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, {searchMovies, setSearchBy})(SearchPage);
+export default connect(mapStateToProps, { searchMovies, setSearchBy, setSearchQuery })(SearchPage);

@@ -48,7 +48,7 @@ class SearchBox extends React.Component {
                         <button onClick={this.handleSearchTypeChanged.bind(this)} value="title" className={this.state.searchBy === "title" ? 'active' : null}>TITLE</button>
                         <button onClick={this.handleSearchTypeChanged.bind(this)} value="genres" className={this.state.searchBy === "genres" ? 'active' : null}>GENRE</button>
                     </div>
-                    <button className="search-button" onClick={this.handleSearch.bind(this)} disabled={!text}>SEARCH</button>
+                    <button className={"search-button " + (!text ? "disabled" : "")} onClick={this.handleSearch.bind(this)} disabled={!text}>SEARCH</button>
                 </div>
             </div>
         )

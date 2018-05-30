@@ -23,10 +23,7 @@ class MovieGrid extends React.Component {
     }
 
     sortMoviesBy(sortOption) {
-        console.log('executed');
-        console.log(this.props);
         const { movies } = this.props;
-        // console.log(sortOption);
         if (!sortOption)
             return movies
         if (sortOption === 'release_date') {         
@@ -42,7 +39,23 @@ class MovieGrid extends React.Component {
     render() {
         return (
             <div className="movie-grid-container">
-                <MovieGridSummary movieCount={this.props.movies.length} sortOption={this.props.sortBy} onSort={this.handleSort.bind(this)}/>
+                {
+                    this.props.path !== "/movie/:id"
+                    ? <MovieGridSummary movieCount={this.props.movies.length} sortOption={this.props.sortBy} onSort={this.handleSort.bind(this)}/>
+                    : <div className="sort-by-lane">
+                        {
+                            this.props.searchQuery !== ''
+                            ? <label>
+                                {
+                                    this.props.searchBy === 'genres'
+                                    ? `Films by ${this.props.searchQuery} genres` 
+                                    : `Films with ${this.props.searchQuery} title` 
+                                }
+                            </label>
+                            : null
+                        }
+                    </div>
+                }
                 <div className="movie-grid">
                     {
                         this.props.movies.length !== 0
@@ -58,6 +71,8 @@ class MovieGrid extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         sortBy: state.sortType.sortBy,
+        searchBy: state.searchType.searchBy,
+        searchQuery: state.searchQuery.searchQuery
     };
 }
 
