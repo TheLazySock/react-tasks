@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import SearchBox from '../components/SearchBox';
+<<<<<<< HEAD
+=======
+import BackdropContainer from '../components/BackdropContainer';
+>>>>>>> 8af45b0c575191fccef9ef05a85ccd823e181664
 
 import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
 
