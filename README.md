@@ -19,7 +19,7 @@ npm run prod
 - Fix
   - [ ] Movie props for MovieGrid in MoviePage
 - Styles
-  - [ ] Style for 404 page
+  - [x] Style for 404 page
 - Tests
   - [ ] Snapshot testing
   - [ ] Coverage > 80%
