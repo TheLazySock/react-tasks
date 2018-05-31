@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import SearchBox from '../components/SearchBox';
-import MovieGrid from '../components/MovieGrid';
-import BackdropContainer from '../components/BackdropContainer';
 
 import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
 
@@ -47,10 +44,12 @@ class SearchPage extends React.Component {
     render() {
         return (
             <div>
-                <BackdropContainer>
+                <div className="backdrop">
+                    <header className="backdrop-header">
+                        <Link className="site-name" to={'/search'}>netflixroulette</Link>
+                    </header>
                     <SearchBox onSearch={this.handleSearch.bind(this)} onSearchType={this.handleSearchType.bind(this)} search={this.props.search} searchBy={this.props.searchBy}/>
-                </BackdropContainer>
-                <MovieGrid movies={this.props.movies}/>
+                </div>
             </div>
         );
     };

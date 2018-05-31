@@ -1,7 +1,5 @@
 import React from 'react';
 
-import BackdropContainer from '../components/BackdropContainer';
-
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
@@ -15,6 +13,11 @@ class SearchBox extends React.Component {
         this.setState({
             text: e.target.value
         });
+    }
+
+    pressEnterKey(e) {
+        if(e.keyCode == 13 && e.shiftKey == false) 
+            this.handleSearch();
     }
 
     handleSearch() {
@@ -41,7 +44,7 @@ class SearchBox extends React.Component {
         return (
             <div id="search-box">
                 <h6>FIND YOUR MOVIE</h6>
-                <input className="search-input" value={text} onChange={this.handleTextChange.bind(this)} placeholder="Search..."/>
+                <input className="search-input" value={text} onChange={this.handleTextChange.bind(this)} placeholder="Search..." onKeyDown={this.pressEnterKey.bind(this)}/>
                 <div className="search-box-elements">
                     <div className="search-by-box">
                         <label>SEARCH BY</label>
