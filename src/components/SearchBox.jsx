@@ -17,6 +17,11 @@ class SearchBox extends React.Component {
         });
     }
 
+    pressEnterKey(e) {
+        if(e.keyCode == 13 && e.shiftKey == false) 
+            this.handleSearch();
+    }
+
     handleSearch() {
         const { text } = this.state;
 
@@ -41,7 +46,7 @@ class SearchBox extends React.Component {
         return (
             <div id="search-box">
                 <h6>FIND YOUR MOVIE</h6>
-                <input className="search-input" value={text} onChange={this.handleTextChange.bind(this)} placeholder="Search..."/>
+                <input className="search-input" value={text} onChange={this.handleTextChange.bind(this)} placeholder="Search..." onKeyDown={this.pressEnterKey.bind(this)}/>
                 <div className="search-box-elements">
                     <div className="search-by-box">
                         <label>SEARCH BY</label>

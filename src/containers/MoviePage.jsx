@@ -2,12 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import MovieInfo from '../components/MovieInfo';
-import MovieGrid from '../components/MovieGrid';
-import BackdropContainer from '../components/BackdropContainer';
+import Loader from './Loader';
 
 import { fetchMovie } from '../redux/actions';
 
 class MoviePage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            filteredMovies: []
+        }
+    }
     componentWillMount() {
         const { movieId } = this.props;
 
@@ -23,10 +28,7 @@ class MoviePage extends React.Component {
     render() {
         return (
             <div>
-                <BackdropContainer searchLink={true}>
-                    <MovieInfo movie={this.props.movie} />
-                </BackdropContainer>
-                <MovieGrid movies={this.props.movies} path={this.props.match.path} />
+                <MovieInfo movie={this.props.movie} loading={this.props.loading}/>
             </div>
         );
     }
