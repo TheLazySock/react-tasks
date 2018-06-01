@@ -18,23 +18,23 @@ class App extends React.Component {
 
     render() {
         return (
-                <MuiThemeProvider>
-                    <React.Fragment>
-                        <Switch>
-                            <Redirect exact from="/" to="/search" />
-                            <Route path="/search" component={SearchPage} />
-                            <Route path="/movie/:id" component={MoviePage} />
-                        </Switch>
+            <MuiThemeProvider>
+                <React.Fragment>
+                    <Switch>
+                        <Redirect exact from="/" to="/search" />
+                        <Route path="/search" component={SearchPage} />
+                        <Route path="/movie/:id" component={MoviePage} />
+                    </Switch>
 
-                        <div className="grid-loader">
-                            <Loader loading={this.props.loading} >
-                                <MovieGrid movies={this.props.movies} />
-                            </Loader>
-                        </div>
+                    <div className="grid-loader">
+                        <Loader loading={this.props.loading} >
+                            <MovieGrid movies={this.props.movies} />
+                        </Loader>
+                    </div>
 
-                        <Footer />
-                    </React.Fragment>
-                </MuiThemeProvider>
+                    <Footer />
+                </React.Fragment>
+            </MuiThemeProvider>
         )
     }
 };

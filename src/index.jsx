@@ -12,14 +12,17 @@ import MoviePage from './containers/MoviePage';
 import NotFoundPage from './containers/NotFoundPage';
 import ErrorBoundary from './containers/ErrorBoundary';
 
-import store from './redux/store';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 render(
     <Router history={browserHistory}>
         <Provider store={store}>
-            <ErrorBoundary>
-                <App />
-            </ErrorBoundary>
+            <PersistGate persistor={persistor}>
+                <ErrorBoundary>
+                    <App />
+                </ErrorBoundary>
+            </PersistGate>
         </Provider>
     </Router>,
     document.getElementById('app')
