@@ -27,7 +27,7 @@ npm run prod
   - [ ] Actions & reducers covered with unit tests (~60% coverage)
   - [ ] e2e test
 - Redux
-  - [ ] Offline data storage & storage restoration
+  - [x] Offline data storage & storage restoration
 - SSR
   - [ ] Provide initial state from server with redux
   - [ ] Server handles query params to compute initial state
