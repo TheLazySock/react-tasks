@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { browserHistory } from 'react-router';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -19,14 +18,12 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router history={browserHistory}>
                 <MuiThemeProvider>
                     <React.Fragment>
                         <Switch>
                             <Redirect exact from="/" to="/search" />
                             <Route path="/search" component={SearchPage} />
                             <Route path="/movie/:id" component={MoviePage} />
-                            <Route path="*" component={NotFoundPage} />
                         </Switch>
 
                         <div className="grid-loader">
@@ -35,12 +32,9 @@ class App extends React.Component {
                             </Loader>
                         </div>
 
-                        {this.props.children}
-
                         <Footer />
                     </React.Fragment>
                 </MuiThemeProvider>
-            </Router>
         )
     }
 };
@@ -53,4 +47,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
