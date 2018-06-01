@@ -16,14 +16,14 @@ import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 render(
-    <Router history={browserHistory}>
-        <Provider store={store}>
-            <PersistGate persistor={persistor}>
+    <PersistGate persistor={persistor}>
+        <Router history={browserHistory}>
+            <Provider store={store}>
                 <ErrorBoundary>
                     <App />
                 </ErrorBoundary>
-            </PersistGate>
-        </Provider>
-    </Router>,
+            </Provider>
+        </Router>
+    </PersistGate>,
     document.getElementById('app')
 );
