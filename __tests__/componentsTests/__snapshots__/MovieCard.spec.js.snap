@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>MOVIE CARD --- snapshot MovieCard have to rendered succesfully 1`] = `
+<Link
+  className="movie-card"
+  replace={false}
+  to="/movie/680"
+>
+  <img
+    alt="There must be poster"
+    className="movie-card-poster"
+    src="https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg"
+  />
+  <div>
+    <label
+      className="movie-card-title"
+    >
+      Pulp Fiction
+    </label>
+    <label
+      className="movie-card-date"
+    >
+      1994
+    </label>
+  </div>
+  <label
+    className="movie-card-genres"
+  >
+    Thriller & Crime
+  </label>
+</Link>
+`;

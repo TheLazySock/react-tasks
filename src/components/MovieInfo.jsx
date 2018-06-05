@@ -7,7 +7,7 @@ const MovieInfo = (props) => {
     const movie = props.movie;
     const releaseDateYear = new Date(movie.release_date).getFullYear();
 
-    const genresString = movie.genres ? movie.genres.join(' & ') : '';
+    const genresString =  Array.isArray(movie.genres) ? movie.genres.join(' & ') : 'No any genres';
 
     return (
         <div className="backdrop">

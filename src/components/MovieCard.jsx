@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MovieCard = (props) => {
     const releaseDateYear = new Date(props.release_date).getFullYear();
 
-    const genresString = props.genres.join(' & ');
+    const genresString = Array.isArray(props.genres) ? props.genres.join(' & ') : 'No any genres';
 
     return (
         <Link className="movie-card" to={`/movie/${props.id}`}>
