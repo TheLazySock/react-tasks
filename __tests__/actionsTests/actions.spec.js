@@ -11,7 +11,6 @@ import { fetchMoviesRequest,
     setSortBy } from '../../src/redux/actions/index'
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { store } from '../../src/redux/store';
 const fetchMock = require('fetch-mock');
 const mockStore = configureMockStore([ thunk ]);
 
@@ -20,11 +19,6 @@ describe('>>>ACTIONS --- Test redux actions', () => {
         const fetchRequest = fetchMoviesRequest('pulp');
         expect(fetchRequest).toEqual({ type: 'FETCH_MOVIES_REQUEST', query: 'pulp'});
     });
-    
-    // it('fetchMoviesSuccess test', () => {
-    //     const fetchSuccess = fetchMoviesSuccess('pulp');
-    //     expect(fetchSuccess).toEqual({ type: 'FETCH_MOVIES_SUCCESS', data: 'pulp'});
-    // });
     
     it('fetchMovieRequest test', () => {
         const fetchRequest = fetchMovieRequest(680);

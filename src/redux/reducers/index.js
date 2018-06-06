@@ -10,7 +10,7 @@ import {
     SET_SEARCH_QUERY
 } from '../actions';
 
-const movies = (state = { isFetching: false, items: [] }, action) => {
+export const movies = (state = { isFetching: false, items: [] }, action) => {
     switch(action.type) {
         case FETCH_MOVIES_REQUEST:
             return {
@@ -28,7 +28,7 @@ const movies = (state = { isFetching: false, items: [] }, action) => {
     }
 };
 
-const movie = (state = { isFetching: false, info: {} }, action) => {
+export const movie = (state = { isFetching: false, info: {} }, action) => {
     switch(action.type) {
         case FETCH_MOVIE_REQUEST:
             return {
@@ -46,7 +46,7 @@ const movie = (state = { isFetching: false, info: {} }, action) => {
     }
 };
 
-const searchType = (state = { searchBy: 'title'}, action) => {
+export const searchType = (state = { searchBy: 'title'}, action) => {
     switch(action.type) {
         case SET_SEARCH_TYPE: 
             return {
@@ -58,7 +58,7 @@ const searchType = (state = { searchBy: 'title'}, action) => {
     }
 }
 
-const searchQuery = (state = { searchQuery: ''}, action) => {
+export const searchQuery = (state = { searchQuery: ''}, action) => {
     switch(action.type) {
         case SET_SEARCH_QUERY:
             return {
@@ -70,7 +70,7 @@ const searchQuery = (state = { searchQuery: ''}, action) => {
     }
 }
 
-const sortType = (state = { sortBy: 'release_date'}, action) => {
+export const sortType = (state = { sortBy: 'release_date'}, action) => {
     switch(action.type) {
         case SET_SORT_TYPE: 
             return {
