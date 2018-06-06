@@ -20,22 +20,22 @@ describe('>>>MOVIE INFO --- snapshot', () => {
                 + "in this sprawling, comedic crime caper. Their adventures " 
                 + "unfurl in three stories that ingeniously trip back and forth in time."
     }
+    let container;
+
+    beforeEach(() => {
+        container = shallow(<MovieInfo movie={movieInfoProps}/>);
+    });
 
     it('MovieInfo have to rendered succesfully', () => {
-        const movieInfo = shallow(<MovieInfo 
-            movie={movieInfoProps}
-        />);
-        expect(shallowToJson(movieInfo)).toMatchSnapshot();
+        expect(shallowToJson(container)).toMatchSnapshot();
     });
 
     it('MovieInfo genres should work correctly', () => {
-        const movieInfo = shallow(<MovieInfo movie={movieInfoProps}/>);
-        expect(movieInfo.find('.movie-genre').text()).toBe('Thriller & Crime');
+        expect(container.find('.movie-genre').text()).toBe('Thriller & Crime');
     });
 
     it('Loader should work', () => {
-        const movieInfo = shallow(<MovieInfo movie={movieInfoProps} loading={true} />);
-        // console.log(movieInfo.find('Loader'));
-        expect(movieInfo.find('Loader')).toHaveLength(1);
+        const container = shallow(<MovieInfo movie={movieInfoProps} loading={true} />);
+        expect(container.find('Loader')).toHaveLength(1);
     })
 });

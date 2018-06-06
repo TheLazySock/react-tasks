@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>MOVIE GRID rendered smart component 1`] = `
+<MovieGrid
+  movies={
+    Array [
+      Object {
+        "budget": 6277106,
+        "genres": Array [
+          "Drama",
+          "Romance",
+          "Science Fiction",
+          "Adventure",
+        ],
+        "id": 401513,
+        "overview": "After an alien ship crash lands in a Russian city, many who see the inside and the occupants start to question their own existence while others demand the aliens leave Earth.",
+        "poster_path": "https://image.tmdb.org/t/p/w500/2lz2GVDsgMlGYSzPl8BeKqqU7MQ.jpg",
+        "release_date": "2017-01-26",
+        "revenue": 0,
+        "runtime": 130,
+        "tagline": "The Earth is for Humans",
+        "title": "Attraction",
+        "vote_average": 5.9,
+        "vote_count": 108,
+      },
+      Object {
+        "budget": 80000000,
+        "genres": Array [
+          "Animation",
+          "Comedy",
+          "Family",
+        ],
+        "id": 10715,
+        "overview": "Bugs Bunny and Daffy Duck are up to their feuding ways again. Tired of playing second fiddle to Bugs, Daffy has decided to leave the Studio for good. He is aided by Warner Bros.' humor impaired Vice President of Comedy, Kate Houghton, who releases him from his contract and instructs WB security guard/aspiring stunt man DJ Drake to capture and \\"escort\\" Daffy off the studio lot.",
+        "poster_path": "https://image.tmdb.org/t/p/w500/ownVrxw7OYOo8vwk2g4q74Oe8Wa.jpg",
+        "release_date": "2003-11-14",
+        "revenue": 68514844,
+        "runtime": 90,
+        "tagline": "Real life has never been so animated.",
+        "title": "Looney Tunes: Back in Action",
+        "vote_average": 5.7,
+        "vote_count": 408,
+      },
+    ]
+  }
+  searchBy="release_date"
+  searchQuery="pulp"
+  setSortBy={[Function]}
+  sortBy="title"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
+`;
