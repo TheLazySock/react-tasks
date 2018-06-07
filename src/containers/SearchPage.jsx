@@ -7,7 +7,7 @@ import SearchBox from '../components/SearchBox';
 import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
 
 
-class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
     componentWillMount() {
         const { search, searchMovies } = this.props;
 
