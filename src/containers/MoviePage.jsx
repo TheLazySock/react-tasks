@@ -6,7 +6,7 @@ import Loader from './Loader';
 
 import { fetchMovie } from '../redux/actions';
 
-class MoviePage extends React.Component {
+export class MoviePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
