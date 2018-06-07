@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>SEARCH BOX tests search box snapshot 1`] = `
+<SearchBox
+  onSearch={[MockFunction]}
+  onSearchType={[MockFunction]}
+  search="pulp"
+  searchBy="title"
+>
+  <div
+    id="search-box"
+  >
+    <h6>
+      FIND YOUR MOVIE
+    </h6>
+    <input
+      className="search-input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Search..."
+      value="pulp"
+    />
+    <div
+      className="search-box-elements"
+    >
+      <div
+        className="search-by-box"
+      >
+        <label>
+          SEARCH BY
+        </label>
+        <button
+          className="title-button active"
+          onClick={[Function]}
+          value="title"
+        >
+          TITLE
+        </button>
+        <button
+          className="genres-button null"
+          onClick={[Function]}
+          value="genres"
+        >
+          GENRE
+        </button>
+      </div>
+      <button
+        className="search-button "
+        disabled={false}
+        onClick={[Function]}
+      >
+        SEARCH
+      </button>
+    </div>
+  </div>
+</SearchBox>
+`;
