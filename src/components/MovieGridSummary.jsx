@@ -21,6 +21,7 @@ class MovieGridSummary extends React.PureComponent {
                         <div>
                             Sort by
                             <button 
+                                id="release-date"
                                 className={"sort-option " + (sortOption === 'release_date' ? 'active' : '')}
                                 onClick={this.changeSortOption.bind(this)}
                                 value={'release_date'}
@@ -28,6 +29,7 @@ class MovieGridSummary extends React.PureComponent {
                                 release date 
                             </button>
                             <button 
+                                id="vote-average"
                                 className={"sort-option " + (sortOption === 'vote_average' ? 'active' : '')}
                                 onClick={this.changeSortOption.bind(this)}
                                 value={'vote_average'} 

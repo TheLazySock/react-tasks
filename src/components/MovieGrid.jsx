@@ -6,7 +6,7 @@ import MovieGridSummary from './MovieGridSummary';
 
 import { setSortBy } from '../redux/actions';
 
-class MovieGrid extends React.Component {
+export class MovieGrid extends React.Component {
     componentDidMount() {
         this.handleSort(this.props.sortBy);
     }

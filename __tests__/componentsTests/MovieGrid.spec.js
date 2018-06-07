@@ -1,18 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieGrid from '../../src/components/MovieGrid';
-import { shallow, configure } from 'enzyme';
+import { MovieGrid } from '../../src/components/MovieGrid';
+import DefaultMovieGrid from '../../src/components/MovieGrid';
+import MovieGridSummary from '../../src/components/MovieGridSummary';
+import { setSortBy, setSortType } from '../../src/redux/actions/index';
+import { shallow, configure, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import configureStore from 'redux-mock-store'
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
 describe('>>>MOVIE GRID', () => {
-    const mockStore = configureStore();
+    const mockStore = configureStore([ thunk ]);
     const initialState = {
-        sortType: { sortBy: 'title' },
-        searchType: { searchBy: 'release_date' },
+        sortType: { sortBy: 'release_date' },
+        searchType: { searchBy: 'title' },
         searchQuery: { searchQuery: 'pulp' }
     };
     const movies = [
@@ -58,20 +62,75 @@ describe('>>>MOVIE GRID', () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-        container = shallow(<MovieGrid store={store} movies={movies} />);
+        container = shallow(<DefaultMovieGrid store={store} movies={movies}/>);
     })
 
     it('rendered smart component', () => {
         expect(shallowToJson(container)).toMatchSnapshot();
     });
 
+    it('rendered with 5 movies count', () => {
+        const wrapper = shallow(<MovieGrid store={store} movies={[{id: 0}, {id: 1}, {id: 2}, {id: 3}, {id: 4}]} setSortBy={jest.fn()}/>);
+        expect(wrapper.find('.movie-grid').children().length).toBe(5);
+    });
+
+    it('rendered with 0 movies count', () => {
+        const wrapper = shallow(<MovieGrid store={store} movies={[]} setSortBy={jest.fn()}/>);
+        expect(wrapper.find('.movie-grid').children().length).toBe(1);
+    });
+
     it('check props matches with initial state', () => {
-        expect(container.prop('sortBy')).toEqual('title');
-        expect(container.prop('searchBy')).toEqual('release_date');
+        expect(container.prop('sortBy')).toEqual('release_date');
+        expect(container.prop('searchBy')).toEqual('title');
         expect(container.prop('searchQuery')).toEqual('pulp');
     });
     
-    it('componentDidMount called', () => {
-        console.log(container.instance());
+    it('dispatch check', () => {
+        let actions;
+        store.dispatch(setSortBy('vote_average'));
+        actions = store.getActions();
+        expect(actions[0].type).toBe('SET_SORT_TYPE');
+    });
+
+    it('handleSort simulate', () => {
+        let sortOption = store.getState().sortType.sortBy;
+        let onSort = (anotherSortOption) => {
+            sortOption = anotherSortOption;
+        }
+        const movieGrid = shallow(<MovieGrid store={store} movies={movies} setSortBy={setSortBy}/>);
+        const movieGridSummary = mount(<MovieGridSummary sortOption={sortOption} onSort={onSort} />);
+        movieGridSummary.find('button#vote-average').simulate('click');
+        store = mockStore({
+            sortType: { sortBy: sortOption },
+            searchType: { searchBy: 'title' },
+            searchQuery: { searchQuery: 'pulp' }
+        })
+        movieGrid.setProps({ store: store });
+        expect(movieGrid.instance()).toBeInstanceOf(MovieGrid);       
+    });
+});
+
+describe('>>>MOVIE GRID SUMMARY', () => {    
+    it('moviegrid summary rendered correctly', () => {
+        const container = shallow(<MovieGridSummary movieCount={10} sortOption={'release_date'} />);
+        expect(shallowToJson(container)).toMatchSnapshot();
+    });
+    
+    it('moviegrid summary rendered renreder with 0 movie count', () => {
+        const container = shallow(<MovieGridSummary movieCount={0} sortOption={'release_date'} />);
+        expect(container.find('.sort-by-lane').children().length).toBe(0);
+    });
+
+    it('change sort option works', () => {
+        let sortOption = 'release_date';
+        const onSort = (anotherSortOption) => {
+            sortOption = anotherSortOption;
+        }
+        let component = mount(<MovieGridSummary movieCount={10} sortOption={sortOption} onSort={onSort}/>)
+        expect(component.instance().props.sortOption).toBe('release_date');
+        component.find('button#vote-average').simulate('click');
+        component.setProps({sortOption: sortOption});
+        expect(component.instance().props.sortOption).toBe('vote_average');
+
     });
 });

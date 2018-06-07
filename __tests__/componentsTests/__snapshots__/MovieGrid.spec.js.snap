@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`>>>MOVIE GRID SUMMARY moviegrid summary rendered correctly 1`] = `
+<div
+  className="sort-by-lane"
+>
+  <React.Fragment>
+    <label>
+      10
+       movies found
+    </label>
+    <div>
+      Sort by
+      <button
+        className="sort-option active"
+        id="release-date"
+        onClick={[Function]}
+        value="release_date"
+      >
+        release date
+      </button>
+      <button
+        className="sort-option "
+        id="vote-average"
+        onClick={[Function]}
+        value="vote_average"
+      >
+        rating
+      </button>
+    </div>
+  </React.Fragment>
+</div>
+`;
+
 exports[`>>>MOVIE GRID rendered smart component 1`] = `
 <MovieGrid
   movies={
@@ -43,10 +75,10 @@ exports[`>>>MOVIE GRID rendered smart component 1`] = `
       },
     ]
   }
-  searchBy="release_date"
+  searchBy="title"
   searchQuery="pulp"
   setSortBy={[Function]}
-  sortBy="title"
+  sortBy="release_date"
   store={
     Object {
       "clearActions": [Function],

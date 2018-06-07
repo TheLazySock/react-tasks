@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>LOADER tests loader have to match snapshot with false loading 1`] = `
+<div
+  className="loader"
+/>
+`;
+
+exports[`>>>LOADER tests loader have to match snapshot with true loading 1`] = `
+<div
+  className="loader"
+>
+  <CircularProgress
+    className="spinner"
+    color="#da395c"
+    max={100}
+    min={0}
+    mode="indeterminate"
+    size={250}
+    thickness={15}
+    value={0}
+  />
+</div>
+`;
