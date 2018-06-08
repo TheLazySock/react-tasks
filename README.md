@@ -21,11 +21,11 @@ npm run prod
 - Styles
   - [x] Style for 404 page
 - Tests
-  - [ ] Snapshot testing
-  - [ ] Coverage > 80%
-  - [ ] Functional testing with enzyme and jest
-  - [ ] Actions & reducers covered with unit tests (~60% coverage)
-  - [ ] e2e test
+  - [x] Snapshot testing
+  - [x] Coverage > 80%
+  - [x] Functional testing with enzyme and jest
+  - [x] Actions & reducers covered with unit tests (~60% coverage)
+  - [x] e2e test
 - Redux
   - [x] Offline data storage & storage restoration
 - SSR
