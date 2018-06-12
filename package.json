@@ -12,7 +12,8 @@
     "dev:noserver": "cross-env NODE_ENV=development webpack --config ./config",
     "prod": "cross-env NODE_ENV=production webpack --config ./config",
     "watch": "webpack --mode development --watch",
-    "server": "cross-env NODE_ENV=development node server.js"
+    "server": "cross-env NODE_ENV=development babel-node ./server",
+    "server:prod": "cross-env NODE_ENV=production babel-node ./server"
   },
   "author": "Vladislav Petrenko",
   "license": "ISC",
