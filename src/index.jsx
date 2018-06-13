@@ -12,7 +12,8 @@ import MoviePage from './containers/MoviePage';
 import NotFoundPage from './containers/NotFoundPage';
 import ErrorBoundary from './containers/ErrorBoundary';
 
-import { store, persistor } from './redux/store';
+import { configureStore } from './redux/store';
+import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 /**
@@ -25,6 +26,12 @@ import { PersistGate } from 'redux-persist/es/integration/react';
  * не будут работать переходы. В смысле URL меняется, а вот компоненты не отрендериваются.
  * Почему -- не знаю. Понять так и не вышло
  */
+let store;
+window.PRELOADED_STATE ? store = configureStore(window.PRELOADED_STATE) : store = configureStore(); 
+
+// const store = configureStore();
+const persistor = persistStore(store);
+
 hydrate(
     <PersistGate persistor={persistor}>
         <ErrorBoundary>

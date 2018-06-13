@@ -1,11 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { configureStore, store } from './redux/store';
+import { configureStore } from './redux/store';
 import { Provider } from 'react-redux';
 import App from './App';
 
-function renderHTML(html) {
+function renderHTML(html, preloadedState) {
     return `
         <!doctype html>
         <html>
@@ -20,6 +20,9 @@ function renderHTML(html) {
 
         <body>
             <div id="app">${html}</div>
+            <script>
+                window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+            </script>
             <script type="text/javascript" src="/bundle.js"></script>
         </body>
 
@@ -29,6 +32,7 @@ function renderHTML(html) {
 
 export default function serverRenderer() {
     return (req, res) => {
+        const store = configureStore();
 
         const context = {};
 
@@ -36,7 +40,6 @@ export default function serverRenderer() {
             <App
                 Router={StaticRouter}
                 store={store}
-                // loading={true}
                 movies={[]}
             />
             // <App />
@@ -44,7 +47,8 @@ export default function serverRenderer() {
 
         const htmlString = renderToString(app);
 
+        const preloadedState = store.getState();
 
-        res.send(renderHTML(htmlString));
+        res.send(renderHTML(htmlString, preloadedState));
     };
 }
