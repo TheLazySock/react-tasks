@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
     console.log(process.env.NODE_ENV);
     const serverRenderer = require('../src/serverRenderer').default;
 
-    app.use(express.static('public'));    
+    app.use(express.static('dist'));    
     app.use(serverRenderer());
 }
 

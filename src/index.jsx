@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { browserHistory } from 'react-router';
@@ -25,15 +25,14 @@ import { PersistGate } from 'redux-persist/es/integration/react';
  * не будут работать переходы. В смысле URL меняется, а вот компоненты не отрендериваются.
  * Почему -- не знаю. Понять так и не вышло
  */
-render(
+hydrate(
     <PersistGate persistor={persistor}>
-        <Router history={browserHistory}>
-            <Provider store={store}>
-                <ErrorBoundary>
-                    <App />
-                </ErrorBoundary>
-            </Provider>
-        </Router>
+        <ErrorBoundary>
+            <App
+                store={store}
+                Router={Router}
+            />
+        </ErrorBoundary>
     </PersistGate>,
     document.getElementById('app')
 );
