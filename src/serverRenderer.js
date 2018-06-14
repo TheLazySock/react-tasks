@@ -1,8 +1,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { configureStore } from './redux/store';
+import configureStore from './redux/store';
 import App from './App';
+import { URL, URLSearchParams } from 'url';
+import fetch from 'isomorphic-fetch';
+global.URLSearchParams = URLSearchParams;
+global.URL = URL;
+global.location = {};
 
 function renderHTML(html, preloadedState) {
     return `
@@ -14,7 +19,7 @@ function renderHTML(html, preloadedState) {
             <title>
                 React Tasks App
             </title>
-            <link href="/assets/bundle.css" rel="stylesheet">
+            <link href="/assets/bundle.css" rel="stylesheet" type="text/css">
         </head>
 
         <body>
@@ -31,7 +36,7 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
     return (req, res) => {
-        const store = configureStore();
+        const { store } = configureStore();
 
         const context = {};
 
@@ -39,13 +44,14 @@ export default function serverRenderer() {
             <App
                 Router={StaticRouter}
                 store={store}
+                location={req.url}
+                context={context}
             />
         );
 
         const htmlString = renderToString(app);
 
         const preloadedState = store.getState();
-        console.log(preloadedState);
 
         res.send(renderHTML(htmlString, preloadedState));
     };

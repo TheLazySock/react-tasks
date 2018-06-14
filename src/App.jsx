@@ -11,38 +11,10 @@ import Loader from './containers/Loader';
 import MovieGrid from './components/MovieGrid';
 import Footer from './components/Footer';
 
-// class App extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     render() {
-//         return (
-            // <MuiThemeProvider>
-            //     <React.Fragment>
-            //         <Switch>
-            //             <Redirect exact from="/" to="/search" />
-            //             <Route path="/search" component={SearchPage} />
-            //             <Route path="/movie/:id" component={MoviePage} />
-            //         </Switch>
-
-            //         <div className="grid-loader">
-            //             <Loader loading={this.props.loading} >
-            //                 <MovieGrid movies={this.props.movies} />
-            //             </Loader>
-            //         </div>
-
-            //         <Footer />
-            //     </React.Fragment>
-            // </MuiThemeProvider>
-//         )
-//     }
-// };
-
 const App = ({
-    Router, store, loading, movies
+    Router, store, location, context, loading, movies
 }) => (
-    <Router>
+    <Router location={location} context={context}>
         <Provider store={store}>
             <MuiThemeProvider>
                 <React.Fragment>
@@ -71,7 +43,16 @@ App.propTypes = {
         dispatch: PropTypes.func.isRequired,
         getState: PropTypes.func.isRequired,
     }).isRequired,
+    location: PropTypes.string,
+    context: PropTypes.shape({
+        url: PropTypes.string,
+    }),
 };
+
+App.defaultProps = {
+    location: null,
+    context: null,
+}
 
 function mapStateToProps(state) {
 
