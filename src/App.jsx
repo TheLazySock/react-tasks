@@ -6,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import SearchPage from './containers/SearchPage';
 import MoviePage from './containers/MoviePage';
-import NotFoundPage from './containers/NotFoundPage';
 import Loader from './containers/Loader';
 
 import MovieGrid from './components/MovieGrid';

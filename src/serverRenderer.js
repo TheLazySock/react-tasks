@@ -2,7 +2,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { configureStore } from './redux/store';
-import { Provider } from 'react-redux';
 import App from './App';
 
 function renderHTML(html, preloadedState) {
@@ -40,14 +39,13 @@ export default function serverRenderer() {
             <App
                 Router={StaticRouter}
                 store={store}
-                movies={[]}
             />
-            // <App />
         );
 
         const htmlString = renderToString(app);
 
         const preloadedState = store.getState();
+        console.log(preloadedState);
 
         res.send(renderHTML(htmlString, preloadedState));
     };
