@@ -19,7 +19,7 @@ function renderHTML(html, preloadedState) {
             <title>
                 React Tasks App
             </title>
-            <link href="/assets/bundle.css" rel="stylesheet" type="text/css">
+            ${process.env.NODE_ENV === 'development' ? '' : '<link href="/assets/bundle.css" rel="stylesheet" type="text/css">'}
         </head>
 
         <body>
@@ -39,12 +39,16 @@ export default function serverRenderer() {
         const { store } = configureStore();
 
         const context = {};
+        const location = {
+            pathname: req.path,
+            search: req.url
+        }
 
         const app = (
             <App
                 Router={StaticRouter}
                 store={store}
-                location={req.url}
+                location={location}
                 context={context}
             />
         );
@@ -52,6 +56,7 @@ export default function serverRenderer() {
         const htmlString = renderToString(app);
 
         const preloadedState = store.getState();
+        preloadedState.searchQuery.searchQuery = req.query.search;
 
         res.send(renderHTML(htmlString, preloadedState));
     };
