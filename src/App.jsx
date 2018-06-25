@@ -1,18 +1,18 @@
 import React from 'react';
-import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import SearchPage from './containers/SearchPage';
-import MoviePage from './containers/MoviePage';
-import Loader from './containers/Loader';
-
-import MovieGrid from './components/MovieGrid';
-import Footer from './components/Footer';
+/* eslint-disable */
+import SearchPage from './containers/SearchPage.jsx';
+import MoviePage from './containers/MoviePage.jsx';
+import MovieGrid from './components/MovieGrid.jsx';
+/* eslint-enable */
+import Loader from './containers/Loader.jsx';
+import Footer from './components/Footer.jsx';
 
 const App = ({
-    Router, store, location, context, loading, movies
+    Router, store, location, context, loading, movies,
 }) => (
     <Router location={location} context={context}>
         <Provider store={store}>
@@ -52,10 +52,9 @@ App.propTypes = {
 App.defaultProps = {
     location: null,
     context: null,
-}
+};
 
 function mapStateToProps(state) {
-
     return {
         movies: state.movies.items,
         loading: state.movies.isFetching,

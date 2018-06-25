@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Loader from '../containers/Loader';
+import Loader from '../containers/Loader.jsx';
 
 const MovieInfo = (props) => {
-    const movie = props.movie;
+    const newLocal = props.movie; // линтер ругался на movie = props.movie, исправил как-то так.
+    const movie = newLocal;
     const releaseDateYear = new Date(movie.release_date).getFullYear();
 
-    const genresString =  Array.isArray(movie.genres) ? movie.genres.join(' & ') : 'No any genres';
+    const genresString = Array.isArray(movie.genres) ? movie.genres.join(' & ') : 'No any genres';
 
     return (
         <div className="backdrop">
@@ -32,6 +33,6 @@ const MovieInfo = (props) => {
             </div>
         </div>
     );
-}
+};
 
 export default MovieInfo;

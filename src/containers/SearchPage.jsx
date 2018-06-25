@@ -1,21 +1,23 @@
+/* eslint no-shadow: ["error", { "allow": ["searchMovies"] }] */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import SearchBox from '../components/SearchBox';
+import SearchBox from '../components/SearchBox.jsx';
 
 import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
 
 
 export class SearchPage extends React.Component {
     componentWillMount() {
-        const { search, searchMovies } = this.props;
+        const { search, searchMovies, location } = this.props;
 
         if (search) {
             searchMovies(search, this.props.searchBy);
             this.props.history.push({
                 pathname: location.pathname,
-                search: `search=${search}`
+                search: `search=${search}`,
             });
         }
     }
@@ -28,10 +30,10 @@ export class SearchPage extends React.Component {
 
     handleSearch(search) {
         const { history, location } = this.props;
-       
+
         history.push({
             pathname: location.pathname,
-            search: `search=${search}`
+            search: `search=${search}`,
         });
 
         this.props.setSearchQuery(search);
@@ -48,11 +50,16 @@ export class SearchPage extends React.Component {
                     <header className="backdrop-header">
                         <Link className="site-name" to={'/search'}>netflixroulette</Link>
                     </header>
-                    <SearchBox onSearch={this.handleSearch.bind(this)} onSearchType={this.handleSearchType.bind(this)} search={this.props.search} searchBy={this.props.searchBy}/>
+                    <SearchBox
+                        onSearch={this.handleSearch.bind(this)}
+                        onSearchType={this.handleSearchType.bind(this)}
+                        search={this.props.search}
+                        searchBy={this.props.searchBy}
+                    />
                 </div>
             </div>
         );
-    };
+    }
 }
 
 function mapStateToProps(state, ownProps) {
@@ -62,7 +69,7 @@ function mapStateToProps(state, ownProps) {
         movies: state.movies.items,
         loading: state.movies.isFetching,
         searchBy: state.searchType.searchBy,
-        search: query.get('search') || state.searchQuery.searchQuery
+        search: query.get('search') || state.searchQuery.searchQuery,
     };
 }
 

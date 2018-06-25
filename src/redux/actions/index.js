@@ -14,62 +14,53 @@ export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 
 export const fetchMoviesRequest = query => ({
     type: FETCH_MOVIES_REQUEST,
-    query
+    query,
 });
 
-export const fetchMoviesSuccess = ( data ) => ({
+export const fetchMoviesSuccess = data => ({
     ...data,
-    type: FETCH_MOVIES_SUCCESS
+    type: FETCH_MOVIES_SUCCESS,
 });
 
 export const fetchMovieRequest = id => ({
     type: FETCH_MOVIE_REQUEST,
-    id
+    id,
 });
 
-export const fetchMovieSuccess = ( data ) => ({
+export const fetchMovieSuccess = data => ({
+    type: FETCH_MOVIE_SUCCESS,
     movie: data,
-    type: FETCH_MOVIE_SUCCESS
 });
-
-
 
 export const setSearchType = searchType => ({
     type: SET_SEARCH_TYPE,
-    searchType: searchType
+    searchType,
 });
 
 export const setSortType = sortType => ({
     type: SET_SORT_TYPE,
-    sortType: sortType
+    sortType,
 });
 
-export const searchMovies = (query, searchBy) => dispatch => {
+export const searchMovies = (query, searchBy) => (dispatch) => {
     dispatch(fetchMoviesRequest(query));
 
-    return api.searchMovies(query, searchBy)
+    return api.searchMovies(query, searchBy) // eslint-disable-line
         .then(data => dispatch(fetchMoviesSuccess(data)));
-}
+};
 
-export const fetchMovie = id => dispatch => {
+export const fetchMovie = id => (dispatch) => {
     dispatch(fetchMovieRequest(id));
 
-    return api.fetchMovie(id)
+    return api.fetchMovie(id) // eslint-disable-line
         .then(data => dispatch(fetchMovieSuccess(data)));
-}
+};
 
-export const setSearchQuery = searchQuery => dispatch => {
-    
-    return dispatch({
-        type: SET_SEARCH_QUERY,
-        searchQuery: searchQuery
-    });
-}
+export const setSearchQuery = searchQuery => dispatch => dispatch({
+    type: SET_SEARCH_QUERY,
+    searchQuery,
+});
 
-export const setSearchBy = searchType => dispatch => {
-    return dispatch(setSearchType(searchType));
-}
+export const setSearchBy = searchType => dispatch => dispatch(setSearchType(searchType));
 
-export const setSortBy = sortType => dispatch => {
-    return dispatch(setSortType(sortType));
-}
+export const setSortBy = sortType => dispatch => dispatch(setSortType(sortType));

@@ -5,31 +5,32 @@ class SearchBox extends React.Component {
         super(props);
         this.state = {
             text: this.props.search || '',
-            searchBy: this.props.searchBy
+            searchBy: this.props.searchBy,
         };
     }
 
     handleTextChange(e) {
         this.setState({
-            text: e.target.value
+            text: e.target.value,
         });
     }
 
     pressEnterKey(e) {
-        if(e.keyCode == 13 && e.shiftKey == false) 
+        if (e.keyCode === 13 && e.shiftKey === false) {
             this.handleSearch();
+        }
     }
 
     handleSearch() {
         const { text } = this.state;
 
         this.props.onSearch(text);
-    };
+    }
 
     handleSearchTypeChanged(e) {
         this.setState({
-            searchBy: e.target.value
-        })
+            searchBy: e.target.value,
+        });
 
         this.handleSearchType(e.target.value);
     }
@@ -44,18 +45,42 @@ class SearchBox extends React.Component {
         return (
             <div id="search-box">
                 <h6>FIND YOUR MOVIE</h6>
-                <input className="search-input" value={text} onChange={this.handleTextChange.bind(this)} placeholder="Search..." onKeyDown={this.pressEnterKey.bind(this)}/>
+                <input
+                    className="search-input"
+                    value={text}
+                    onChange={this.handleTextChange.bind(this)}
+                    placeholder="Search..."
+                    onKeyDown={this.pressEnterKey.bind(this)}
+                />
                 <div className="search-box-elements">
                     <div className="search-by-box">
                         <label>SEARCH BY</label>
-                        <button onClick={this.handleSearchTypeChanged.bind(this)} value="title" className={'title-button ' + (this.state.searchBy === "title" ? 'active' : null)}>TITLE</button>
-                        <button onClick={this.handleSearchTypeChanged.bind(this)} value="genres" className={'genres-button ' +  (this.state.searchBy === "genres" ? 'active' : null)}>GENRE</button>
+                        <button
+                            onClick={this.handleSearchTypeChanged.bind(this)}
+                            value="title"
+                            className={`title-button ${this.state.searchBy === 'title' ? 'active' : null}`}
+                        >
+                            TITLE
+                        </button>
+                        <button
+                            onClick={this.handleSearchTypeChanged.bind(this)}
+                            value="genres"
+                            className={`genres-button ${this.state.searchBy === 'genres' ? 'active' : null}`}
+                        >
+                            GENRE
+                        </button>
                     </div>
-                    <button className={"search-button " + (!text ? "disabled" : "")} onClick={this.handleSearch.bind(this)} disabled={!text}>SEARCH</button>
+                    <button
+                        className={`search-button ${!text ? 'disabled' : ''}`}
+                        onClick={this.handleSearch.bind(this)}
+                        disabled={!text}
+                    >
+                        SEARCH
+                    </button>
                 </div>
             </div>
-        )
-    };
+        );
+    }
 }
 
 export default SearchBox;

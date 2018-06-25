@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const MovieCard = (props) => {
     const releaseDateYear = new Date(props.release_date).getFullYear();
@@ -15,7 +15,7 @@ const MovieCard = (props) => {
             </div>
             <label className="movie-card-genres">{genresString}</label>
         </Link>
-    )
-}
+    );
+};
 
 export default MovieCard;

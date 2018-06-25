@@ -7,12 +7,12 @@ import rootReducer from '../reducers';
 
 const config = {
     key: 'storage',
-    storage
-}
+    storage,
+};
 
 const persistedReducer = persistReducer(config, rootReducer);
 
-const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
 export default (initialState) => {
     const store = createStore(persistedReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
@@ -20,4 +20,4 @@ export default (initialState) => {
     const persistor = persistStore(store);
 
     return { store, persistor };
-}
+};

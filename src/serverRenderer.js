@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import configureStore from './redux/store';
-import App from './App';
 import { URL, URLSearchParams } from 'url';
-import fetch from 'isomorphic-fetch';
+import configureStore from './redux/store';
+import App from './App.jsx';
+
 global.URLSearchParams = URLSearchParams;
 global.URL = URL;
 global.location = {};
@@ -19,7 +19,9 @@ function renderHTML(html, preloadedState) {
             <title>
                 React Tasks App
             </title>
-            ${process.env.NODE_ENV === 'development' ? '' : '<link href="/assets/bundle.css" rel="stylesheet" type="text/css">'}
+            ${process.env.NODE_ENV === 'development'
+        ? ''
+        : '<link href="/assets/bundle.css" rel="stylesheet" type="text/css">'}
         </head>
 
         <body>
@@ -41,8 +43,8 @@ export default function serverRenderer() {
         const context = {};
         const location = {
             pathname: req.path,
-            search: req.url
-        }
+            search: req.url,
+        };
 
         const app = (
             <App
