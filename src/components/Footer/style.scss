@@ -1,0 +1,16 @@
+@import '../../assets/constants.scss';
+
+.footer {
+    width: 100%;
+    height: 35px;
+    line-height: 30px;
+    display: block;
+    background-color: #211f1f;
+    color: $red;
+    position: relative;
+    flex-grow: 0;
+    & > label {        
+        vertical-align: middle;
+        margin-left: 15px;
+    }
+}

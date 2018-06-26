@@ -17,7 +17,8 @@ npm run prod
 
 ## My todos for this project
 - Fix
-  - [ ] Movie props for MovieGrid in MoviePage
+  - [x] Movie props for MovieGrid in MoviePage
+  - [ ] Sass @import directive is not working in prod mode with SSR
 - Styles
   - [x] Style for 404 page
 - Tests
@@ -29,7 +30,7 @@ npm run prod
 - Redux
   - [x] Offline data storage & storage restoration
 - SSR
-  - [ ] Provide initial state from server with redux
-  - [ ] Server handles query params to compute initial state
-  - [ ] Route masking
-  - [ ] Code splitting
+  - [x] Provide initial state from server with redux
+  - [x] Server handles query params to compute initial state
+  - [x] Route masking
+  - [x] Code splitting

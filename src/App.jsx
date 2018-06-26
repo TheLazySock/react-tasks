@@ -3,13 +3,14 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-/* eslint-disable */
-import SearchPage from './containers/SearchPage.jsx';
-import MoviePage from './containers/MoviePage.jsx';
-import MovieGrid from './components/MovieGrid.jsx';
-/* eslint-enable */
-import Loader from './containers/Loader.jsx';
-import Footer from './components/Footer.jsx';
+
+import SearchPage from './containers/SearchPage';
+import MoviePage from './containers/MoviePage';
+import MovieGrid from './components/MovieGrid';
+import style from './assets/basic.scss';
+
+import Loader from './containers/Loader';
+import Footer from './components/Footer';
 
 const App = ({
     Router, store, location, context, loading, movies,
@@ -17,21 +18,21 @@ const App = ({
     <Router location={location} context={context}>
         <Provider store={store}>
             <MuiThemeProvider>
-                <React.Fragment>
+                <div className={ style['app-container'] }>
                     <Switch>
                         <Redirect exact from="/" to="/search" />
                         <Route path="/search" component={SearchPage} />
                         <Route path="/movie/:id" component={MoviePage} />
                     </Switch>
 
-                    <div className="grid-loader">
+                    <div className={style['grid-loader']}>
                         <Loader loading={loading} >
                             <MovieGrid movies={movies} />
                         </Loader>
                     </div>
 
                     <Footer />
-                </React.Fragment>
+                </div>
             </MuiThemeProvider>
         </Provider>
     </Router>
@@ -61,5 +62,4 @@ function mapStateToProps(state) {
     };
 }
 
-// export default withRouter(connect(mapStateToProps)(App));
 export default connect(mapStateToProps)(App);

@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CSSModules from 'react-css-modules';
 
-import MovieCard from './MovieCard.jsx';
-import MovieGridSummary from './MovieGridSummary.jsx';
+import MovieCard from '../MovieCard';
+import MovieGridSummary from '../MovieGridSummary';
+import style from './style.scss';
 
-import { setSortBy } from '../redux/actions';
+import { setSortBy } from '../../redux/actions';
 
 export class MovieGrid extends React.Component {
     componentDidMount() {
@@ -12,7 +14,7 @@ export class MovieGrid extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props !== prevProps) {
+        if (this.props.sortBy !== prevProps.sortBy) {
             this.handleSort(this.props.sortBy);
         }
     }
@@ -39,13 +41,13 @@ export class MovieGrid extends React.Component {
 
     render() {
         return (
-            <div className="movie-grid-container">
+            <div styleName="movie-grid-container">
                 <MovieGridSummary
                     movieCount={this.props.movies.length}
                     sortOption={this.props.sortBy}
                     onSort={this.handleSort.bind(this)}
                 />
-                <div className="movie-grid">
+                <div styleName="movie-grid">
                     {
                         this.props.movies.length !== 0
                             ? this.props.movies.map(movie => <MovieCard key={movie.id} {...movie} />)
@@ -65,4 +67,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { setSortBy })(MovieGrid);
+export default connect(mapStateToProps, { setSortBy })(CSSModules(MovieGrid, style));

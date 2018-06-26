@@ -2,10 +2,9 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import './assets/App.scss';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import App from './App.jsx';
-import ErrorBoundary from './containers/ErrorBoundary.jsx';
+import ErrorBoundary from './containers/ErrorBoundary';
 
 import configureStore from './redux/store';
 

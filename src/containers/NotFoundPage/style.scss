@@ -1,0 +1,32 @@
+.not-found-page {
+    min-height: 80vh;
+    margin-bottom: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .gradient-animation {
+        height: 75%;
+        width: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: lightcoral;
+        box-shadow: -250px 250px 80px -200px paleturquoise inset,
+                    300px -300px 80px -200px palegreen inset,
+                    -350px 350px 80px -200px khaki inset,
+                    300px -400px 80px -200px sandybrown inset;
+        border-radius: 30px;
+        border: 10px solid white;
+        animation: background 10s infinite alternate;
+    }
+    @keyframes background {
+      50% {
+        background: mediumorchid;
+        box-shadow: -250px 250px 80px -200px plum inset,
+                    300px -300px 80px -200px hotpink inset,
+                    -350px 350px 80px -200px violet inset,
+                    300px -400px 80px -200px orchid inset;
+        }
+    }
+}

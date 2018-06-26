@@ -1,0 +1,28 @@
+@import "../../assets/constants.scss";
+
+.backdrop {
+    width: 100%;
+    background-color: #211f1f;
+    padding: 20px 0 35px;
+}
+
+.backdrop-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: auto;
+    .site-name {
+        color: $red;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    .search-link {
+        color: $red;
+        background-color: #fefefe;
+        padding: 5px 15px;
+        font-size: 11px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}

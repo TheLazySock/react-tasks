@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './style.scss';
 
 class SearchBox extends React.Component {
     constructor(props) {
@@ -41,37 +42,45 @@ class SearchBox extends React.Component {
 
     render() {
         const { text } = this.state;
-
         return (
-            <div id="search-box">
+            <div className={style['search-box']}>
                 <h6>FIND YOUR MOVIE</h6>
                 <input
-                    className="search-input"
+                    className={style['search-input']}
                     value={text}
                     onChange={this.handleTextChange.bind(this)}
                     placeholder="Search..."
                     onKeyDown={this.pressEnterKey.bind(this)}
                 />
-                <div className="search-box-elements">
-                    <div className="search-by-box">
+                <div className={style['search-box-elements']}>
+                    <div className={style['search-by-box']}>
                         <label>SEARCH BY</label>
                         <button
                             onClick={this.handleSearchTypeChanged.bind(this)}
                             value="title"
-                            className={`title-button ${this.state.searchBy === 'title' ? 'active' : null}`}
+                            className={`
+                                ${style['title-button ']} 
+                                ${this.state.searchBy === 'title' ? style.active : null}`
+                            }
                         >
                             TITLE
                         </button>
                         <button
                             onClick={this.handleSearchTypeChanged.bind(this)}
                             value="genres"
-                            className={`genres-button ${this.state.searchBy === 'genres' ? 'active' : null}`}
+                            className={`
+                                ${style['genres-button ']} 
+                                ${this.state.searchBy === 'genres' ? style.active : null}`
+                            }
                         >
                             GENRE
                         </button>
                     </div>
                     <button
-                        className={`search-button ${!text ? 'disabled' : ''}`}
+                        className={`
+                            ${style['search-button']} 
+                            ${!text ? style.disabled : ''}`
+                        }
                         onClick={this.handleSearch.bind(this)}
                         disabled={!text}
                     >

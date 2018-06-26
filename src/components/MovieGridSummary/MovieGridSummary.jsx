@@ -1,4 +1,7 @@
 import React from 'react';
+import CSSModules from 'react-css-modules';
+
+import style from './style.scss';
 
 class MovieGridSummary extends React.PureComponent {
     changeSortOption(e) {
@@ -8,7 +11,7 @@ class MovieGridSummary extends React.PureComponent {
     render() {
         const { movieCount, sortOption } = this.props;
         return (
-            <div className="sort-by-lane">
+            <div styleName="sort-by-lane">
                 {
                     movieCount !== 0
                         ? <React.Fragment>
@@ -17,7 +20,7 @@ class MovieGridSummary extends React.PureComponent {
                                 Sort by
                                 <button
                                     id="release-date"
-                                    className={`sort-option ${sortOption === 'release_date' ? 'active' : ''}`}
+                                    styleName={`sort-option ${sortOption === 'release_date' ? 'active' : ''}`}
                                     onClick={this.changeSortOption.bind(this)}
                                     value={'release_date'}
                                 >
@@ -25,7 +28,7 @@ class MovieGridSummary extends React.PureComponent {
                                 </button>
                                 <button
                                     id="vote-average"
-                                    className={`sort-option ${sortOption === 'vote_average' ? 'active' : ''}`}
+                                    styleName={`sort-option ${sortOption === 'vote_average' ? 'active' : ''}`}
                                     onClick={this.changeSortOption.bind(this)}
                                     value={'vote_average'}
                                 >
@@ -40,4 +43,4 @@ class MovieGridSummary extends React.PureComponent {
     }
 }
 
-export default MovieGridSummary;
+export default CSSModules(MovieGridSummary, style, { allowMultiple: true });

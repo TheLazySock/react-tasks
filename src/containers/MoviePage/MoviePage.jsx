@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CSSModules from 'react-css-modules';
 
-import MovieInfo from '../components/MovieInfo.jsx';
 
-import { fetchMovie } from '../redux/actions';
+import style from './style.scss';
+import MovieInfo from '../../components/MovieInfo';
+
+import { fetchMovie } from '../../redux/actions';
 
 export class MoviePage extends React.Component {
     constructor(props) {
@@ -43,4 +46,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, { fetchMovie })(MoviePage);
+export default connect(mapStateToProps, { fetchMovie })(CSSModules(MoviePage, style));

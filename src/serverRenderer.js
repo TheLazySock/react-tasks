@@ -29,7 +29,7 @@ function renderHTML(html, preloadedState) {
             <script>
                 window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
             </script>
-            <script type="text/javascript" src="/bundle.js"></script>
+            <script type="text/javascript" src="/js/main.js"></script>
         </body>
 
         </html>

@@ -15,7 +15,6 @@ if (process.env.NODE_ENV === 'development') {
     }));
 } else {
     const serverRenderer = require('../src/serverRenderer').default; //eslint-disable-line
-
     app.use(express.static('dist'));
     app.use(serverRenderer());
 }

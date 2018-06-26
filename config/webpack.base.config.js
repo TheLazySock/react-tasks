@@ -16,9 +16,9 @@ module.exports = {
 
     resolve: {
         extensions: ['.js', '.jsx'],
-    // alias: {
-    //     '@': path.resolve(__dirname, './src')
-    // }
+        // alias: {
+        //     '@': path.resolve(__dirname, './src')
+        // }
     },
 
     module: {
@@ -37,10 +37,11 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader'],
-                }),
+                loaders: [
+                    'style-loader',
+                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
+                    'sass-loader',
+                ],
             },
         ],
     },

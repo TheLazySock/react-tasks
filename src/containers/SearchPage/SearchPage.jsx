@@ -3,10 +3,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CSSModules from 'react-css-modules';
 
-import SearchBox from '../components/SearchBox.jsx';
+import SearchBox from '../../components/SearchBox';
+import style from './style.scss';
 
-import { searchMovies, setSearchBy, setSearchQuery } from '../redux/actions';
+import { searchMovies, setSearchBy, setSearchQuery } from '../../redux/actions';
 
 
 export class SearchPage extends React.Component {
@@ -46,9 +48,9 @@ export class SearchPage extends React.Component {
     render() {
         return (
             <div>
-                <div className="backdrop">
-                    <header className="backdrop-header">
-                        <Link className="site-name" to={'/search'}>netflixroulette</Link>
+                <div styleName="backdrop">
+                    <header styleName="backdrop-header">
+                        <Link styleName="site-name" to={'/search'}>netflixroulette</Link>
                     </header>
                     <SearchBox
                         onSearch={this.handleSearch.bind(this)}
@@ -73,4 +75,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, { searchMovies, setSearchBy, setSearchQuery })(SearchPage);
+export default connect(mapStateToProps, { searchMovies, setSearchBy, setSearchQuery })(CSSModules(SearchPage, style));

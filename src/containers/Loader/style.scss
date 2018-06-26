@@ -1,0 +1,9 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .spinner {
+        display: block;
+        margin: 100px auto;
+    }
+}
