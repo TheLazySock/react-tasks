@@ -6,15 +6,19 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
     const webpack = require('webpack'); //eslint-disable-line
     const webpackDevMiddleware = require('webpack-dev-middleware'); //eslint-disable-line
+    const webpackHotMiddleware = require('webpack-hot-middleware'); //eslint-disable-line
+  const webpackHotServerMiddleware = require('webpack-hot-server-middleware'); //eslint-disable-line
     const config = require('../config'); //eslint-disable-line
 
     const compiler = webpack(config);
 
     app.use(webpackDevMiddleware(compiler, {
-        publicPath: config.output.publicPath,
+        publicPath: config[0].output.publicPath,
     }));
+    app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
+    app.use(webpackHotServerMiddleware(compiler));
 } else {
-    const serverRenderer = require('../src/serverRenderer').default; //eslint-disable-line
+    const serverRenderer = require('../dist/js/serverRenderer').default; //eslint-disable-line
     app.use(express.static('dist'));
     app.use(serverRenderer());
 }

@@ -18,7 +18,8 @@ npm run prod
 ## My todos for this project
 - Fix
   - [x] Movie props for MovieGrid in MoviePage
-  - [ ] Sass @import directive is not working in prod mode with SSR
+  - [x] Sass @import directive is not working in prod mode with SSR
+  - [ ] Server works, but if page is loading with some url except '/', all styles dying. Same with page reloading
 - Styles
   - [x] Style for 404 page
 - Tests
@@ -34,3 +35,9 @@ npm run prod
   - [x] Server handles query params to compute initial state
   - [x] Route masking
   - [x] Code splitting
+- Useful libraries
+  - [x] ESLint with Airbnb config 
+  - [ ] Storybook
+  - [ ] Flow instead of PropTypes
+  - [x] CSS Modules
+  - [ ] Immutable.js

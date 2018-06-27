@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+import 'babel-polyfill';
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
