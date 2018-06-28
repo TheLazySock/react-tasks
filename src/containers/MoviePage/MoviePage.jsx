@@ -1,10 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
 
-
-import style from './style.scss';
 import MovieInfo from '../../components/MovieInfo';
 
 import { fetchMovie } from '../../redux/actions';
@@ -54,4 +51,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, { fetchMovie })(CSSModules(MoviePage, style));
+export default connect(mapStateToProps, { fetchMovie })(MoviePage);

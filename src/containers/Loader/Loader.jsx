@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import CSSModules from 'react-css-modules';
 import CircularProgress from 'material-ui/CircularProgress';
 import style from './style.scss';
 
@@ -11,14 +10,14 @@ type LoaderProps = {
 
 const Loader = (props: LoaderProps) => (
     (
-        <div styleName="loader">
+        <div className={style.loader}>
             {
                 props.loading
-                    ? <CircularProgress styleName="spinner" size={250} thickness={15} color={'#da395c'}/>
+                    ? <CircularProgress className={style.spinner} size={250} thickness={15} color={'#da395c'}/>
                     : props.children
             }
         </div>
     )
 );
 
-export default CSSModules(Loader, style);
+export default Loader;

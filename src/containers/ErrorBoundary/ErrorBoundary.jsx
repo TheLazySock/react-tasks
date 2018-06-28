@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import CSSModules from 'react-css-modules';
 
 import style from './style.scss';
 
@@ -9,12 +8,12 @@ type ErrorBoundaryProps = {
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, {error: boolean, errorInfo: Object | null}> {
-    constructor(props) {
+    constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = { error: false, errorInfo: null };
     }
 
-    componentDidCatch(error, errorInfo) {
+    componentDidCatch(error: boolean, errorInfo: Object | null) {
         this.setState({
             error,
             errorInfo,
@@ -24,7 +23,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, {error: boolean,
     render() {
         if (this.state.errorInfo) {
             return (
-                <div styleName="error-boundary">
+                <div className={style['error-boundary']}>
                     <h2>Something went wrong.</h2>
                     <details>
                         {this.state.error && this.state.error.toString()}
@@ -38,4 +37,4 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, {error: boolean,
     }
 }
 
-export default CSSModules(ErrorBoundary, style);
+export default ErrorBoundary;

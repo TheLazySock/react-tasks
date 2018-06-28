@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { MovieGrid } from '../../src/components/MovieGrid';
 import DefaultMovieGrid from '../../src/components/MovieGrid';
+import { MovieGrid } from '../../src/components/MovieGrid/MovieGrid.jsx';
 import MovieGridSummary from '../../src/components/MovieGridSummary';
 import { setSortBy, setSortType } from '../../src/redux/actions/index';
 import { shallow, configure, mount } from 'enzyme';

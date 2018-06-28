@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import CSSModules from 'react-css-modules';
 
 import MovieCard from '../MovieCard';
 import MovieGridSummary from '../MovieGridSummary';
@@ -50,13 +49,13 @@ export class MovieGrid extends React.Component<MovieGridProps> {
 
     render() {
         return (
-            <div styleName="movie-grid-container">
+            <div className={style['movie-grid-container']}>
                 <MovieGridSummary
                     movieCount={this.props.movies.length}
                     sortOption={this.props.sortBy}
                     onSort={this.handleSort.bind(this)}
                 />
-                <div styleName="movie-grid">
+                <div className={style['movie-grid']}>
                     {
                         this.props.movies.length !== 0
                             ? this.props.movies.map(movie => <MovieCard key={movie.id} {...movie} />)
@@ -76,4 +75,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { setSortBy })(CSSModules(MovieGrid, style));
+export default connect(mapStateToProps, { setSortBy })(MovieGrid);

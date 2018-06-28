@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DefaultSearchPage, { SearchPage } from '../../src/containers/SearchPage';
+import DefaultSearchPage from '../../src/containers/SearchPage';
+import { SearchPage } from '../../src/containers/SearchPage/SearchPage.jsx';
 import { searchMovies,
     setSearchQuery,
     setSearchBy } from '../../src/redux/actions/index';

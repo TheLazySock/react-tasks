@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import DefaultMoviePage, { MoviePage } from '../../src/containers/MoviePage';
+import DefaultMoviePage from '../../src/containers/MoviePage';
+import { MoviePage } from '../../src/containers/MoviePage/MoviePage.jsx';
 import { fetchMovie } from '../../src/redux/actions/index';
 import { shallow, configure, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';

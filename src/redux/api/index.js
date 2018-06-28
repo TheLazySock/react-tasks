@@ -3,7 +3,7 @@ const API_PREFIX = 'http://react-cdp-api.herokuapp.com';
 export function searchMovies(query, searchBy) {
     const params = {
         search: query,
-        searchBy: searchBy || 'title',
+        searchBy: searchBy, // eslint-disable-line
         limit: 50,
     };
 

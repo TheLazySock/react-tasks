@@ -3,7 +3,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
 
 import SearchBox from '../../components/SearchBox';
 import style from './style.scss';
@@ -57,9 +56,9 @@ export class SearchPage extends React.Component<SearchPageProps> {
     render() {
         return (
             <div>
-                <div styleName="backdrop">
-                    <header styleName="backdrop-header">
-                        <Link styleName="site-name" to={'/search'}>netflixroulette</Link>
+                <div classname={style.backdrop}>
+                    <header classname={style['backdrop-header']}>
+                        <Link classname={style['site-name']} to={'/search'}>netflixroulette</Link>
                     </header>
                     <SearchBox
                         onSearch={this.handleSearch.bind(this)}
@@ -84,4 +83,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps, { searchMovies, setSearchBy, setSearchQuery })(CSSModules(SearchPage, style));
+export default connect(mapStateToProps, { searchMovies, setSearchBy, setSearchQuery })(SearchPage);
