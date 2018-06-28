@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
@@ -8,24 +9,32 @@ import style from './style.scss';
 
 import { setSortBy } from '../../redux/actions';
 
-export class MovieGrid extends React.Component {
+type MovieGridProps = {
+    movies: Array<Object>,
+    sortBy: string,
+    searchBy: string,
+    searchQuery: string,
+    setSortBy: Function
+}
+
+export class MovieGrid extends React.Component<MovieGridProps> {
     componentDidMount() {
         this.handleSort(this.props.sortBy);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Object) {
         if (this.props.sortBy !== prevProps.sortBy) {
             this.handleSort(this.props.sortBy);
         }
     }
 
-    handleSort(sortOption) {
+    handleSort(sortOption: string) {
         this.props.setSortBy(sortOption);
 
         this.sortMoviesBy(sortOption);
     }
 
-    sortMoviesBy(sortOption) {
+    sortMoviesBy(sortOption: string) {
         const { movies } = this.props;
         if (!sortOption) {
             return movies;

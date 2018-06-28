@@ -1,22 +1,30 @@
+// @flow
 import React from 'react';
 import style from './style.scss';
 
-class SearchBox extends React.Component {
-    constructor(props) {
+type SearchBoxProps = {
+    search?: string,
+    searchBy: string,
+    onSearch: Function,
+    onSearchType: Function
+}
+
+class SearchBox extends React.Component<SearchBoxProps, {text?: string, searchBy?: string}> {
+    constructor(props: SearchBoxProps) {
         super(props);
         this.state = {
-            text: this.props.search || '',
+            text: this.props.search,
             searchBy: this.props.searchBy,
         };
     }
 
-    handleTextChange(e) {
+    handleTextChange(e: Object) {
         this.setState({
             text: e.target.value,
         });
     }
 
-    pressEnterKey(e) {
+    pressEnterKey(e: Object) {
         if (e.keyCode === 13 && e.shiftKey === false) {
             this.handleSearch();
         }
@@ -28,7 +36,7 @@ class SearchBox extends React.Component {
         this.props.onSearch(text);
     }
 
-    handleSearchTypeChanged(e) {
+    handleSearchTypeChanged(e: Object) {
         this.setState({
             searchBy: e.target.value,
         });
@@ -36,7 +44,7 @@ class SearchBox extends React.Component {
         this.handleSearchType(e.target.value);
     }
 
-    handleSearchType(searchBy) {
+    handleSearchType(searchBy: string) {
         this.props.onSearchType(searchBy);
     }
 
@@ -60,7 +68,7 @@ class SearchBox extends React.Component {
                             value="title"
                             className={`
                                 ${style['title-button ']} 
-                                ${this.state.searchBy === 'title' ? style.active : null}`
+                                ${this.state.searchBy === 'title' ? style.active : ''}`
                             }
                         >
                             TITLE
@@ -70,7 +78,7 @@ class SearchBox extends React.Component {
                             value="genres"
                             className={`
                                 ${style['genres-button ']} 
-                                ${this.state.searchBy === 'genres' ? style.active : null}`
+                                ${this.state.searchBy === 'genres' ? style.active : ''}`
                             }
                         >
                             GENRE

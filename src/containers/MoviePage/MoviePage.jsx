@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import CSSModules from 'react-css-modules';
@@ -8,8 +9,15 @@ import MovieInfo from '../../components/MovieInfo';
 
 import { fetchMovie } from '../../redux/actions';
 
-export class MoviePage extends React.Component {
-    constructor(props) {
+type MoviePageProps = {
+    loading: boolean,
+    movie: Object,
+    movieId: number | string,
+    fetchMovie: Function
+}
+
+export class MoviePage extends React.Component<MoviePageProps, {filteredMovies: Array<Object>}> {
+    constructor(props: MoviePageProps) {
         super(props);
         this.state = {
             filteredMovies: [],
@@ -22,7 +30,7 @@ export class MoviePage extends React.Component {
         this.props.fetchMovie(movieId);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Object) {
         if ((nextProps.movieId !== this.props.movieId)) {
             this.props.fetchMovie(nextProps.movieId);
         }

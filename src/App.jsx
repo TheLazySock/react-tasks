@@ -3,7 +3,6 @@ import 'babel-polyfill';
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
-import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import SearchPage from './containers/SearchPage';
@@ -39,23 +38,6 @@ const App = ({
         </Provider>
     </Router>
 );
-
-App.propTypes = {
-    Router: PropTypes.func.isRequired,
-    store: PropTypes.shape({
-        dispatch: PropTypes.func.isRequired,
-        getState: PropTypes.func.isRequired,
-    }).isRequired,
-    location: PropTypes.string,
-    context: PropTypes.shape({
-        url: PropTypes.string,
-    }),
-};
-
-App.defaultProps = {
-    location: null,
-    context: null,
-};
 
 function mapStateToProps(state) {
     return {

@@ -38,6 +38,6 @@ npm run prod
 - Useful libraries
   - [x] ESLint with Airbnb config 
   - [ ] Storybook
-  - [ ] Flow instead of PropTypes
+  - [x] Flow instead of PropTypes
   - [x] CSS Modules
   - [ ] Immutable.js

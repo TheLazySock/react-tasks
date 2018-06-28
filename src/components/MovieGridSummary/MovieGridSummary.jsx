@@ -1,9 +1,16 @@
+// @flow
 import React from 'react';
 import CSSModules from 'react-css-modules';
 
 import style from './style.scss';
 
-class MovieGridSummary extends React.PureComponent {
+type MovieGridSummaryProps = {
+    movieCount: number,
+    sortOption: string,
+    onSort: Function
+} 
+
+class MovieGridSummary extends React.PureComponent<MovieGridSummaryProps> {
     changeSortOption(e) {
         this.props.onSort(e.target.value);
     }

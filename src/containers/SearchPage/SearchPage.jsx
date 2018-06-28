@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["searchMovies"] }] */
-
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,17 @@ import style from './style.scss';
 
 import { searchMovies, setSearchBy, setSearchQuery } from '../../redux/actions';
 
+type SearchPageProps = {
+    search: string,
+    searchBy: string,
+    location: Object,
+    history: Object,
+    searchMovies: Function,
+    setSearchBy: Function,
+    setSearchQuery: Function,
+}
 
-export class SearchPage extends React.Component {
+export class SearchPage extends React.Component<SearchPageProps> {
     componentWillMount() {
         const { search, searchMovies, location } = this.props;
 
@@ -24,13 +33,13 @@ export class SearchPage extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Object) {
         if ((nextProps.search !== this.props.search) || (nextProps.searchBy !== this.props.searchBy)) {
             this.props.searchMovies(nextProps.search, nextProps.searchBy);
         }
     }
 
-    handleSearch(search) {
+    handleSearch(search: string) {
         const { history, location } = this.props;
 
         history.push({
@@ -41,7 +50,7 @@ export class SearchPage extends React.Component {
         this.props.setSearchQuery(search);
     }
 
-    handleSearchType(searchBy) {
+    handleSearchType(searchBy: string) {
         this.props.setSearchBy(searchBy);
     }
 

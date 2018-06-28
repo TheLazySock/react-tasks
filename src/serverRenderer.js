@@ -21,7 +21,7 @@ function renderHTML(html, preloadedState) {
             </title>
             ${process.env.NODE_ENV === 'development'
         ? ''
-        : '<link href="/assets/bundle.css" rel="stylesheet" type="text/css">'}
+        : '<link href="/css/main.css" rel="stylesheet" type="text/css">'}
         </head>
 
         <body>

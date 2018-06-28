@@ -1,10 +1,19 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CSSModules from 'react-css-modules';
 
 import style from './style.scss';
 
-const MovieCard = (props) => {
+type MovieCardProps = {
+    release_date: Date,
+    genres: Array<string>,
+    id: number | string,
+    poster_path: ?string,
+    title: string
+}
+
+const MovieCard = (props: MovieCardProps) => {
     const releaseDateYear = new Date(props.release_date).getFullYear();
 
     const genresString = Array.isArray(props.genres) ? props.genres.join(' & ') : 'No any genres';

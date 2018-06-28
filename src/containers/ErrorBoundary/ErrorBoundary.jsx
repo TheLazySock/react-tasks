@@ -1,9 +1,14 @@
+// @flow
 import React from 'react';
 import CSSModules from 'react-css-modules';
 
 import style from './style.scss';
 
-class ErrorBoundary extends React.Component {
+type ErrorBoundaryProps = {
+    children: Array<any>
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, {error: boolean, errorInfo: Object | null}> {
     constructor(props) {
         super(props);
         this.state = { error: false, errorInfo: null };
