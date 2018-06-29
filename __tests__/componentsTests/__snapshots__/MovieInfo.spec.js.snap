@@ -1,45 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`>>>MOVIE INFO --- snapshot MovieInfo have to rendered succesfully 1`] = `
-<div>
-  <header>
+<div
+  className="backdrop"
+>
+  <header
+    className="backdrop-header"
+  >
     <Link
+      className="site-name"
       replace={false}
       to="/search"
     >
       netflixroulette
     </Link>
     <Link
+      className="search-link"
       replace={false}
       to="/search"
     >
       SEARCH
     </Link>
   </header>
-  <div>
+  <div
+    className="movie"
+  >
     <Loader>
       <img
+        className="movie-image"
         src="https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg"
       />
-      <div>
-        <div>
+      <div
+        className="movie-details"
+      >
+        <div
+          className="movie-title"
+        >
           Pulp Fiction
         </div>
-        <div>
+        <div
+          className="movie-rating"
+        >
           8.3
         </div>
-        <div>
+        <div
+          className="movie-genre"
+        >
           Thriller & Crime
         </div>
-        <div>
+        <div
+          className="movie-numbers"
+        >
           1994
         </div>
-        <div>
+        <div
+          className="movie-numbers"
+        >
           154
            min
         </div>
-        <div>
-          <div>
+        <div
+          className="scrollable"
+        >
+          <div
+            className="movie-description"
+          >
             A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.
           </div>
         </div>

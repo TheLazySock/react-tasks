@@ -7,25 +7,32 @@ exports[`>>>SEARCH BOX tests search box snapshot 1`] = `
   search="pulp"
   searchBy="title"
 >
-  <div>
+  <div
+    className="search-box"
+  >
     <h6>
       FIND YOUR MOVIE
     </h6>
     <input
+      className="search-input"
       onChange={[Function]}
       onKeyDown={[Function]}
       placeholder="Search..."
       value="pulp"
     />
-    <div>
-      <div>
+    <div
+      className="search-box-elements"
+    >
+      <div
+        className="search-by-box"
+      >
         <label>
           SEARCH BY
         </label>
         <button
           className="
-                                undefined 
-                                undefined"
+                                title-button  
+                                active"
           onClick={[Function]}
           value="title"
         >
@@ -33,7 +40,7 @@ exports[`>>>SEARCH BOX tests search box snapshot 1`] = `
         </button>
         <button
           className="
-                                undefined 
+                                genres-button  
                                 "
           onClick={[Function]}
           value="genres"
@@ -43,7 +50,7 @@ exports[`>>>SEARCH BOX tests search box snapshot 1`] = `
       </div>
       <button
         className="
-                            undefined 
+                            search-button 
                             "
         disabled={false}
         onClick={[Function]}

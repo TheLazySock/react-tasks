@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`>>>MOVIE GRID SUMMARY moviegrid summary rendered correctly 1`] = `
-<div>
+<div
+  className="sort-by-lane"
+>
   <React.Fragment>
     <label>
       10
@@ -11,8 +13,8 @@ exports[`>>>MOVIE GRID SUMMARY moviegrid summary rendered correctly 1`] = `
       Sort by
       <button
         className="
-                                        undefined 
-                                        undefined"
+                                        sort-option 
+                                        active"
         id="release-date"
         onClick={[Function]}
         value="release_date"
@@ -21,7 +23,7 @@ exports[`>>>MOVIE GRID SUMMARY moviegrid summary rendered correctly 1`] = `
       </button>
       <button
         className="
-                                        undefined 
+                                        sort-option 
                                         "
         id="vote-average"
         onClick={[Function]}

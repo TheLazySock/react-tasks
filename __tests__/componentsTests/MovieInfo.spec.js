@@ -15,15 +15,15 @@ describe('>>>MOVIE INFO --- snapshot', () => {
         genres: ["Thriller", "Crime"],
         vote_average: 8.3,
         runtime: 154,
-        overview: "A burger-loving hit man, his philosophical partner, " 
-                + "a drug-addled gangster's moll and a washed-up boxer converge " 
-                + "in this sprawling, comedic crime caper. Their adventures " 
-                + "unfurl in three stories that ingeniously trip back and forth in time."
+        overview: "A burger-loving hit man, his philosophical partner, "
+            + "a drug-addled gangster's moll and a washed-up boxer converge "
+            + "in this sprawling, comedic crime caper. Their adventures "
+            + "unfurl in three stories that ingeniously trip back and forth in time."
     }
     let container;
 
     beforeEach(() => {
-        container = shallow(<MovieInfo movie={movieInfoProps}/>);
+        container = shallow(<MovieInfo movie={movieInfoProps} />);
     });
 
     it('MovieInfo have to rendered succesfully', () => {

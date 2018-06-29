@@ -15,7 +15,7 @@ describe('>>>MOVIE CARD --- snapshot', () => {
         release_date: "1994-09-10",
         genres: ["Thriller", "Crime"]
     }
-
+    
     it('MovieCard have to rendered succesfully', () => {
         const movieCard = shallow(<MovieCard 
             id={movieInfo.id} 

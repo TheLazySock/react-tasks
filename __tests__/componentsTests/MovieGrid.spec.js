@@ -13,7 +13,7 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
 describe('>>>MOVIE GRID', () => {
-    const mockStore = configureStore([ thunk ]);
+    const mockStore = configureStore([thunk]);
     const initialState = {
         sortType: { sortBy: 'release_date' },
         searchType: { searchBy: 'title' },
@@ -62,7 +62,7 @@ describe('>>>MOVIE GRID', () => {
 
     beforeEach(() => {
         store = mockStore(initialState);
-        container = shallow(<DefaultMovieGrid store={store} movies={movies}/>);
+        container = shallow(<DefaultMovieGrid store={store} movies={movies} />);
     })
 
     it('rendered smart component', () => {
@@ -70,12 +70,12 @@ describe('>>>MOVIE GRID', () => {
     });
 
     it('rendered with 5 movies count', () => {
-        const wrapper = shallow(<MovieGrid store={store} movies={[{id: 0}, {id: 1}, {id: 2}, {id: 3}, {id: 4}]} setSortBy={jest.fn()}/>);
+        const wrapper = shallow(<MovieGrid store={store} movies={[{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]} setSortBy={jest.fn()} />);
         expect(wrapper.find('.movie-grid').children().length).toBe(5);
     });
 
     it('rendered with 0 movies count', () => {
-        const wrapper = shallow(<MovieGrid store={store} movies={[]} setSortBy={jest.fn()}/>);
+        const wrapper = shallow(<MovieGrid store={store} movies={[]} setSortBy={jest.fn()} />);
         expect(wrapper.find('.movie-grid').children().length).toBe(1);
     });
 
@@ -84,7 +84,7 @@ describe('>>>MOVIE GRID', () => {
         expect(container.prop('searchBy')).toEqual('title');
         expect(container.prop('searchQuery')).toEqual('pulp');
     });
-    
+
     it('dispatch check', () => {
         let actions;
         store.dispatch(setSortBy('vote_average'));
@@ -97,7 +97,7 @@ describe('>>>MOVIE GRID', () => {
         let onSort = (anotherSortOption) => {
             sortOption = anotherSortOption;
         }
-        const movieGrid = shallow(<MovieGrid store={store} movies={movies} setSortBy={setSortBy}/>);
+        const movieGrid = shallow(<MovieGrid store={store} movies={movies} setSortBy={setSortBy} />);
         const movieGridSummary = mount(<MovieGridSummary sortOption={sortOption} onSort={onSort} />);
         movieGridSummary.find('button#vote-average').simulate('click');
         store = mockStore({
@@ -106,16 +106,38 @@ describe('>>>MOVIE GRID', () => {
             searchQuery: { searchQuery: 'pulp' }
         })
         movieGrid.setProps({ store: store });
-        expect(movieGrid.instance()).toBeInstanceOf(MovieGrid);       
+        expect(movieGrid.instance()).toBeInstanceOf(MovieGrid);
+    });
+
+    it('ComponentDidUpdate trigger', () => {
+        const movieGrid = shallow(<MovieGrid store={store} movies={movies} sortBy={'release_date'} setSortBy={setSortBy}/>);
+        let spy = spyOn(movieGrid.instance(), 'handleSort');
+        expect(movieGrid.instance().props.sortBy).toBe('release_date');
+        movieGrid.setProps({ sortBy: 'vote_average' });
+        expect(movieGrid.instance().props.sortBy).toBe('vote_average');
+        movieGrid.instance().handleSort('vote_average');
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('trigger handleSort with MovieGridSummary component', () => {
+        const movieGrid = shallow(<MovieGrid store={store} movies={movies} setSortBy={setSortBy}/>);
+        let spy = spyOn(movieGrid.instance(), 'handleSort');
+        const movieGridSummary = movieGrid.find('MovieGridSummary').dive();
+        movieGridSummary.find('#vote-average').simulate('click', { target: { value: 'vote_average' } });
+        movieGrid.instance().handleSort('vote_average');
+        expect(spy).toHaveBeenCalled();
+        movieGridSummary.find('#release-date').simulate('click', { target: { value: 'release_date' } });
+        movieGrid.instance().handleSort('release_date');
+        expect(spy).toHaveBeenCalled();
     });
 });
 
-describe('>>>MOVIE GRID SUMMARY', () => {    
+describe('>>>MOVIE GRID SUMMARY', () => {
     it('moviegrid summary rendered correctly', () => {
         const container = shallow(<MovieGridSummary movieCount={10} sortOption={'release_date'} />);
         expect(shallowToJson(container)).toMatchSnapshot();
     });
-    
+
     it('moviegrid summary rendered renreder with 0 movie count', () => {
         const container = shallow(<MovieGridSummary movieCount={0} sortOption={'release_date'} />);
         expect(container.find('.sort-by-lane').children().length).toBe(0);
@@ -126,10 +148,10 @@ describe('>>>MOVIE GRID SUMMARY', () => {
         const onSort = (anotherSortOption) => {
             sortOption = anotherSortOption;
         }
-        let component = mount(<MovieGridSummary movieCount={10} sortOption={sortOption} onSort={onSort}/>)
+        let component = mount(<MovieGridSummary movieCount={10} sortOption={sortOption} onSort={onSort} />)
         expect(component.instance().props.sortOption).toBe('release_date');
         component.find('button#vote-average').simulate('click');
-        component.setProps({sortOption: sortOption});
+        component.setProps({ sortOption: sortOption });
         expect(component.instance().props.sortOption).toBe('vote_average');
 
     });

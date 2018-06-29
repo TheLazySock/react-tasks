@@ -56,9 +56,9 @@ export class SearchPage extends React.Component<SearchPageProps> {
     render() {
         return (
             <div>
-                <div classname={style.backdrop}>
-                    <header classname={style['backdrop-header']}>
-                        <Link classname={style['site-name']} to={'/search'}>netflixroulette</Link>
+                <div className={style.backdrop}>
+                    <header className={style['backdrop-header']}>
+                        <Link className={style['site-name']} to={'/search'}>netflixroulette</Link>
                     </header>
                     <SearchBox
                         onSearch={this.handleSearch.bind(this)}

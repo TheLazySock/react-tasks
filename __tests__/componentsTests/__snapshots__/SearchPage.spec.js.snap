@@ -5,6 +5,7 @@ exports[`>>>SEARCH PAGE tests search page snapshot 1`] = `
   loading={false}
   location={
     Object {
+      "pathname": "/search",
       "search": "?search=",
     }
   }

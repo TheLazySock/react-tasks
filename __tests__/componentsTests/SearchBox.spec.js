@@ -17,7 +17,7 @@ describe('>>>SEARCH BOX tests', () => {
     let container;
 
     beforeEach(() => {
-        container = mount(<SearchBox {...props}/>);
+        container = mount(<SearchBox {...props} />);
     })
 
     it('search box snapshot', () => {
@@ -31,11 +31,11 @@ describe('>>>SEARCH BOX tests', () => {
 
     it('trigger pressEnterKey', () => {
         let spy = spyOn(container.instance(), 'pressEnterKey');
-        let trigger = container.find('input').simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13 });
+        let trigger = container.find('input').simulate('keyDown', { key: 'Enter', keyCode: 13, which: 13, shiftKey: false });
         container.instance().pressEnterKey(trigger);
         expect(spy).toHaveBeenCalled();
     });
-    
+
     it('trigger handleTextChange', () => {
         let spy = spyOn(container.instance(), 'handleTextChange');
         let trigger = container.find('input').simulate('change', { text: 'meow' });

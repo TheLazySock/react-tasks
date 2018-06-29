@@ -2,7 +2,7 @@
 
 exports[`>>>FOOTER --- snapshot Footer have to rendered succesfully 1`] = `
 <footer
-  className={undefined}
+  className="footer"
 >
   <label>
     netflixroulette

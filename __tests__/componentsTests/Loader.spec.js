@@ -7,7 +7,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-describe('>>>LOADER tests', () => {
+describe('>>>LOADER tests', () => {    
     it('loader have to match snapshot with true loading', () => {
         const container = shallow(<Loader loading={true} children={[{id: 0}, {id: 1}]} />);
         expect(shallowToJson(container)).toMatchSnapshot();

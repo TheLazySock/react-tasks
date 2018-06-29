@@ -2,22 +2,24 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import DefaultSearchPage from '../../src/containers/SearchPage';
 import { SearchPage } from '../../src/containers/SearchPage/SearchPage.jsx';
-import { searchMovies,
+import {
+    searchMovies,
     setSearchQuery,
-    setSearchBy } from '../../src/redux/actions/index';
+    setSearchBy
+} from '../../src/redux/actions/index';
 import { shallow, configure, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Adapter from 'enzyme-adapter-react-16';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { browserHistory } from 'react-router';
 const fetchMock = require('fetch-mock');
 
 configure({ adapter: new Adapter() });
 
 describe('>>>SEARCH PAGE tests', () => {
-    const mockStore = configureStore([ thunk ]);
+    const mockStore = configureStore([thunk]);
     const movies = [
         {
             "id": 401513,
@@ -64,45 +66,79 @@ describe('>>>SEARCH PAGE tests', () => {
     };
     const props = {
         location: {
+            pathname: '/search',
             search: '?search='
         },
         setSearchBy: jest.fn(),
         setSearchQuery: jest.fn()
     }
     let store, container;
-    
+
     beforeEach(() => {
         store = mockStore(initialState);
-        container = shallow(<DefaultSearchPage store={store} {...props}/>);
+        container = shallow(<DefaultSearchPage store={store} {...props} />);
     });
-    
+
     it('search page snapshot', () => {
         expect(shallowToJson(container)).toMatchSnapshot();
     });
-    
+
     it('trigger handleSearch', () => {
-        const wrapper = shallow(<SearchPage store={store} {...props}/>);
+        const wrapper = shallow(<SearchPage store={store} {...props} />);
         let push = jest.fn();
-        wrapper.setProps({history: { action: 'PUSH', push: push }, location: { search: '?search=pulp', pathname: '/search'}})
+        wrapper.setProps({ history: { action: 'PUSH', push: push }, location: { search: '?search=pulp', pathname: '/search' } })
         let spy = spyOn(wrapper.instance(), 'handleSearch');
         wrapper.instance().handleSearch('pulp');
         expect(wrapper.instance().props.history).toEqual({ action: 'PUSH', push: push });
-        expect(wrapper.instance().props.location).toEqual({ search: '?search=pulp', pathname: '/search'});
+        expect(wrapper.instance().props.location).toEqual({ search: '?search=pulp', pathname: '/search' });
+        expect(spy).toHaveBeenCalled();
+        wrapper.setProps({ history: { action: 'PUSH', push: push }, location: { search: '?search=action', pathname: '/search' } })
+        wrapper.instance().handleSearch('action');
+        expect(wrapper.instance().props.history).toEqual({ action: 'PUSH', push: push });
+        expect(wrapper.instance().props.location).toEqual({ search: '?search=action', pathname: '/search' });
         expect(spy).toHaveBeenCalled();
     });
-    
+
+    it('trigger handleSearch with SearchBox component', () => {
+        let push = jest.fn();
+        const wrapper = shallow(<SearchPage store={store} {...props} history={{ action: 'PUSH', push: push }} location={{ search: '?search=pulp', pathname: '/search' }} />);
+        let spy = spyOn(wrapper.instance(), 'handleSearch');
+        const searchBox = wrapper.find('SearchBox').dive();
+        searchBox.setProps({ search: 'movie' });
+        searchBox.find('.search-button').simulate('click');
+        wrapper.instance().handleSearch('movie');
+        expect(spy).toHaveBeenCalled();
+    })
+
     it('trigger handleSearchType', () => {
-        const wrapper = shallow(<SearchPage store={store} {...props}/>);
-        let handleSearchType = wrapper.instance()['handleSearchType'] = jest.fn((search) => {return search});
+        const wrapper = shallow(<SearchPage store={store} {...props} />);
+        let handleSearchType = wrapper.instance()['handleSearchType'] = jest.fn((search) => { return search });
         wrapper.instance().handleSearchType('genres');
         expect(handleSearchType).toHaveBeenCalled();
     });
-    
-    it('trigger componentWillMount & componentWillReceiveProps', () => {
-        let mockSearchMovies = jest.fn((text, option) => {return [text, option]});
-        const wrapper = mount(<Router history={browserHistory}><SearchPage store={store} search="pulp" searchBy='title' searchMovies={mockSearchMovies} history={history = {push: jest.fn()}}/></Router>);
-        expect(wrapper).toBeDefined();
-        expect(mockSearchMovies).toHaveBeenCalledWith('pulp', 'title');
+
+    it('trigger handleSearchType with SearchBox component', () => {
+        const wrapper = shallow(<SearchPage store={store} {...props} />);
+        let handleSearchType = wrapper.instance()['handleSearchType'] = jest.fn((search) => { return search });
+        const searchBox = wrapper.find('SearchBox').dive();
+        searchBox.setProps({ searchBy: 'genres' });
+        searchBox.find('.genres-button').simulate('click', { target: { value: 'genres' } });
+        wrapper.instance().handleSearchType('genres');
+        expect(handleSearchType).toHaveBeenCalled();
     });
-    
+
+    it('trigger componentWillMount & componentWillReceiveProps', () => {
+        let mockSearchMovies = jest.fn((text, option) => { return [text, option] });
+        const wrapper = shallow(
+            <SearchPage store={store} search="pulp" searchBy='title' searchMovies={mockSearchMovies} history={history = { push: jest.fn() }} location={props.location} />
+        );
+        expect(wrapper).toBeDefined();
+        expect(wrapper.instance().props.location).toEqual(props.location);
+        expect(mockSearchMovies).toHaveBeenCalledWith('pulp', 'title');
+        wrapper.setProps({ search: 'action' });
+        expect(mockSearchMovies).toHaveBeenCalledWith('action', 'title');
+        wrapper.setProps({ searchBy: 'genres' });
+        expect(mockSearchMovies).toHaveBeenCalledWith('action', 'genres');
+    });
+
 })
